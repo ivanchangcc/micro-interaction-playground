@@ -5,7 +5,7 @@
 
 ## Purpose
 
-A web playground where designers and developers can tweak the animation properties of common UI components (duration, easing, cubic-bezier, spring physics) and see the result live. The goal is learning: by playing with values and comparing curated presets — including intentionally bad ones — users build intuition for what makes a micro-interaction feel good or bad.
+A web playground where designers and developers can tweak the animation properties of 17 common UI components (duration, easing, cubic-bezier, spring physics) and see the result live. The goal is learning: by playing with values and comparing curated presets — including intentionally bad ones — users build intuition for what makes a micro-interaction feel good or bad.
 
 The playground is also a tool: every config produces a copyable code snippet, and any config is shareable via URL.
 
@@ -131,6 +131,8 @@ Presets are defined in `lib/animation/presets.ts` and may be tuned per component
 | Modal | backdrop fade, content scale + translate | click "Open modal" button |
 | Date picker | calendar popover + month transition | click trigger / nav months |
 | Toast | slide-in from corner + auto-dismiss exit | click "Show toast" button |
+| Side menu | slide-in from edge + backdrop fade | click "Open menu" button |
+| Chips | individual chip scale + fade on removal | click `×` on a chip |
 
 **Replay mechanism**: For one-shot animations (modal, toast, popover, dropdown, etc.), a "▶ Replay" button in the canvas footer re-fires the animation by bumping `triggerKey`. For modals, replay opens-then-auto-closes after the enter animation completes; for toasts, replay fires a new toast.
 
