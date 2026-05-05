@@ -74,7 +74,7 @@ test/
 ### Task 1: Scaffold Next.js project
 
 **Files:**
-- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`, `postcss.config.mjs`, `.eslintrc.json`
+- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`, `postcss.config.mjs`, `eslint.config.mjs`
 - Modify: `.gitignore` (already exists)
 
 - [ ] **Step 1: Run create-next-app**
