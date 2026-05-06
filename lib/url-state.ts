@@ -4,6 +4,8 @@ import {
   isComponentId,
   type ComponentId,
 } from '@/components/demos/registry';
+import { DEFAULT_TWEEN, DEFAULT_SPRING } from './animation/defaults';
+import { SLIDER_LIMITS } from './animation/types';
 
 export type PlaygroundState = {
   componentId: ComponentId;
@@ -49,7 +51,61 @@ export function serializeState(state: PlaygroundState): URLSearchParams {
   return params;
 }
 
-export function parseState(_input: string | URLSearchParams): PlaygroundState {
-  // Implemented in Task 8.
-  throw new Error('not implemented');
+function clamp(value: number, min: number, max: number): number | null {
+  if (Number.isNaN(value)) return null;
+  return Math.min(Math.max(value, min), max);
+}
+
+function parseNumber(raw: string | null, fallback: number, limits?: { min: number; max: number }): number {
+  if (raw == null) return fallback;
+  const n = Number(raw);
+  if (Number.isNaN(n)) return fallback;
+  if (limits) {
+    const c = clamp(n, limits.min, limits.max);
+    return c == null ? fallback : c;
+  }
+  return n;
+}
+
+function parseEasing(raw: string | null): EasingValue {
+  if (raw == null) return DEFAULT_TWEEN.easing;
+  if (isNamedEasing(raw)) return raw;
+  if (raw.startsWith('cb:')) {
+    const parts = raw.slice(3).split(',').map(Number);
+    if (parts.length === 4 && parts.every((n) => !Number.isNaN(n))) {
+      return { cubicBezier: parts as unknown as [number, number, number, number] };
+    }
+  }
+  return DEFAULT_TWEEN.easing;
+}
+
+function parseConfigAt(params: URLSearchParams, prefix: string, fallback: AnimationConfig): AnimationConfig {
+  const k = (key: string) => `${prefix}${key}`;
+  const type = params.get(k('t'));
+  if (type === 'spring') {
+    return {
+      type: 'spring',
+      stiffness: parseNumber(params.get(k('s')), DEFAULT_SPRING.stiffness, SLIDER_LIMITS.stiffness),
+      damping: parseNumber(params.get(k('d')), DEFAULT_SPRING.damping, SLIDER_LIMITS.damping),
+      mass: parseNumber(params.get(k('m')), DEFAULT_SPRING.mass, SLIDER_LIMITS.mass),
+    };
+  }
+  if (type === 'tween') {
+    return {
+      type: 'tween',
+      duration: parseNumber(params.get(k('dur')), DEFAULT_TWEEN.duration, SLIDER_LIMITS.duration),
+      easing: parseEasing(params.get(k('e'))),
+    };
+  }
+  return fallback;
+}
+
+export function parseState(input: string | URLSearchParams): PlaygroundState {
+  const params = typeof input === 'string' ? new URLSearchParams(input) : input;
+  const rawId = params.get('c') ?? '';
+  const componentId = isComponentId(rawId) ? rawId : DEFAULT_COMPONENT_ID;
+  const configA = parseConfigAt(params, '', DEFAULT_TWEEN);
+  const sideBySide = params.get('sbs') === '1';
+  const configB = sideBySide ? parseConfigAt(params, 'b.', DEFAULT_SPRING) : undefined;
+  return { componentId, configA, configB, sideBySide };
 }
