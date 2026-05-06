@@ -43,9 +43,9 @@ Checkpoint: Phase 4 complete ✅
 [x] Phase 5 — Task 37: SideMenuDemo
 [x] Phase 5 — Task 38: ChipsDemo
 Checkpoint: Phase 5 complete ✅
-[] Phase 6 — Task 39: Mobile notice
-[] Phase 6 — Task 40: Smoke tests
-[] Phase 6 — Task 41: Manual QA pass
+[x] Phase 6 — Task 39: Mobile notice
+[x] Phase 6 — Task 40: Smoke tests
+[x] Phase 6 — Task 41: Manual QA pass
 Final code review for entire implementation
 
 ## Phase 0 Checkpoint — setup complete
