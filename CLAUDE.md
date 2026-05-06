@@ -57,7 +57,7 @@ npm run test:watch
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
 2. Read the file `todos.md` and understand what's been done already
 3. Check out the feature branch: `git checkout feat/playground-implementation`
-4. **Next task to execute: Task 4 — AnimationConfig types** (first task of Phase 1)
+4. **Next task to execute: Task 12 — TopBar** (first task of Phase 2)
 5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
 6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
 7. After completing each phase, update the progress table below and push to GitHub.
@@ -84,11 +84,26 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 
 ---
 
-### 🔄 Phase 1 — Animation lib (Tasks 4–11) — NEXT
+### ✅ Phase 1 — Animation lib (Tasks 4–11) — COMPLETE
 
-TDD tasks: types, defaults, component registry, URL serializer, URL parser, presets, config adapters (`configToCssVars` / `configToMotionTransition`), `useAnimationStyle` hook.
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 4 | AnimationConfig types | `2b031d3` | `TweenConfig`, `SpringConfig`, `AnimationConfig`, `SLIDER_LIMITS` |
+| 5 | Default configs | `620f6b7` | `DEFAULT_TWEEN` (250ms Material curve), `DEFAULT_SPRING` (iOS feel) |
+| 6 | Component registry | `7789b78` | 17 component IDs, labels, `isComponentId`, `DEFAULT_COMPONENT_ID='toggle'` |
+| 7 | URL serializer | `e19d2ee` | `serializeState` → URLSearchParams; `PlaygroundState` type |
+| 8 | URL parser | `667a422` | `parseState` with fallbacks, clamping; 13 tests total in url-state |
+| 9 | Presets | `0caa451` | 4 presets per component (Material, iOS spring, Snappy, Sluggish/bad) |
+| 10 | Config adapters | `cabc806` | `configToCssVars`, `configToCssTransition`, `configToMotionTransition` |
+| 11 | useAnimationStyle | `b139320` | Hook returning `cssStyle`, `motionTransition`, `isSpring` |
 
-### ⏳ Phase 2 — Shell layout (Tasks 12–14)
+**Test suite:** 29 tests, 5 files, all passing.
+
+**Decisions / deviations:** None — plan followed exactly.
+
+---
+
+### 🔄 Phase 2 — Shell layout (Tasks 12–14) — NEXT
 
 TopBar, ComponentPicker, Canvas.
 
