@@ -58,7 +58,7 @@ npm run test:watch
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
 2. Read the file `todos.md` and understand what's been done already
 3. Check out the feature branch: `git checkout feat/playground-implementation`
-4. **Next task to execute: Task 22 — Demo registry mechanism** (first task of Phase 5)
+4. **Next task to execute: Task 39 — Mobile notice** (first task of Phase 6)
 5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
 6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
 7. After completing each phase, update the progress table below and push to GitHub.
@@ -143,10 +143,24 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 
 ---
 
-### 🔄 Phase 5 — Demos (Tasks 22–38) — NEXT
+### ✅ Phase 5 — Demos (Tasks 22–38) — COMPLETE
 
-Registry mechanism + all 17 component demos.
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 22 | Demo registry + dynamic loader | `2b4873d` | `components/demos/index.tsx`; PlaygroundShell updated |
+| 23–25 | Toggle, Checkbox, IconButton, TextButton | `8cdd20a` | Basic state toggle demos |
+| 26–28 | Accordion, Tabs, Stepper | `8788894` | AnimatePresence, sliding indicator, step transitions |
+| 29–31 | Slider, InputField, SearchInput | `37b5732` | Thumb catch-up, floating label, animated clear button |
+| 32–34 | Dropdown, Popover, Modal | `e0c09a2` | Origin-based scale + fade, backdrop |
+| 35–38 | Toast, DatePicker, SideMenu, Chips | `4d852bb` | Phone frame, month slide, drawer, popLayout |
 
-### ⏳ Phase 6 — Polish (Tasks 39–41)
+**Test suite:** 32 tests, 6 files, all passing. Zero TypeScript errors.
+
+**Decisions / deviations:**
+- `configToMotionTransition` return type temporarily regressed to `any` during Task 26; fixed in spec review pass — `NAMED_TO_MOTION` now typed as `Record<string, Easing>` from `motion/react`
+
+---
+
+### 🔄 Phase 6 — Polish (Tasks 39–41) — NEXT
 
 Mobile notice, smoke tests, manual QA.

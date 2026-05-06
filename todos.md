@@ -25,24 +25,24 @@ Checkpoint: Phase 3 complete ✅
 [x] Phase 4 — Task 20: useUrlState hook
 [x] Phase 4 — Task 21: PlaygroundShell composition
 Checkpoint: Phase 4 complete ✅
-[] Phase 5 — Task 22: Demo registry mechanism
-[] Phase 5 — Task 23: ToggleDemo
-[] Phase 5 — Task 24: CheckboxDemo
-[] Phase 5 — Task 25: IconButton + TextButton demos
-[] Phase 5 — Task 26: AccordionDemo
-[] Phase 5 — Task 27: TabsDemo
-[] Phase 5 — Task 28: StepperDemo
-[] Phase 5 — Task 29: SliderDemo
-[] Phase 5 — Task 30: InputFieldDemo
-[] Phase 5 — Task 31: SearchInputDemo
-[] Phase 5 — Task 32: DropdownDemo
-[] Phase 5 — Task 33: PopoverDemo
-[] Phase 5 — Task 34: ModalDemo
-[] Phase 5 — Task 35: ToastDemo
-[] Phase 5 — Task 36: DatePickerDemo
-[] Phase 5 — Task 37: SideMenuDemo
-[] Phase 5 — Task 38: ChipsDemo
-Checkpoint: Phase 5 complete
+[x] Phase 5 — Task 22: Demo registry mechanism
+[x] Phase 5 — Task 23: ToggleDemo
+[x] Phase 5 — Task 24: CheckboxDemo
+[x] Phase 5 — Task 25: IconButton + TextButton demos
+[x] Phase 5 — Task 26: AccordionDemo
+[x] Phase 5 — Task 27: TabsDemo
+[x] Phase 5 — Task 28: StepperDemo
+[x] Phase 5 — Task 29: SliderDemo
+[x] Phase 5 — Task 30: InputFieldDemo
+[x] Phase 5 — Task 31: SearchInputDemo
+[x] Phase 5 — Task 32: DropdownDemo
+[x] Phase 5 — Task 33: PopoverDemo
+[x] Phase 5 — Task 34: ModalDemo
+[x] Phase 5 — Task 35: ToastDemo
+[x] Phase 5 — Task 36: DatePickerDemo
+[x] Phase 5 — Task 37: SideMenuDemo
+[x] Phase 5 — Task 38: ChipsDemo
+Checkpoint: Phase 5 complete ✅
 [] Phase 6 — Task 39: Mobile notice
 [] Phase 6 — Task 40: Smoke tests
 [] Phase 6 — Task 41: Manual QA pass
@@ -104,6 +104,29 @@ No deviations from plan. ComponentPicker was temporarily stubbed in Task 12 and 
 Next up: Phase 4 (Tasks 20–21) — useUrlState hook + PlaygroundShell full composition.
 
 ## Phase 4 Complete
+
+### What's done
+✅ Task 20: useUrlState hook — debounced URL writes (150ms), initialises from window.location.search, 3 TDD tests
+✅ Task 21: PlaygroundShell + DemoFrame + app/page.tsx — full composition; dev server verified: top bar, canvas, config panel, A/B tabs all render
+
+### Notes from this phase:
+No deviations from plan. Dev server confirmed working at localhost:3000 — canvas shows placeholder text, all controls (preset picker, animation sliders, code snippet) render and are interactive.
+
+## Phase 5 Complete
+
+### What's done
+✅ Task 22: Demo registry + dynamic loader (components/demos/index.tsx)
+✅ Tasks 23–25: Toggle, Checkbox, IconButton, TextButton demos
+✅ Tasks 26–28: Accordion, Tabs, Stepper demos
+✅ Tasks 29–31: Slider, InputField, SearchInput demos
+✅ Tasks 32–34: Dropdown, Popover, Modal demos
+✅ Tasks 35–38: Toast, DatePicker, SideMenu, Chips demos
+
+### Notes from this phase:
+- configToMotionTransition return type temporarily regressed to `any` during Task 26; fixed in spec review — NAMED_TO_MOTION now typed as Record<string, Easing>
+- All 17 demos follow the isSpring branch pattern consistently
+- 32 tests passing, zero TypeScript errors after spec review fix
+Next up: Phase 6 (Tasks 39–41) — mobile notice, smoke tests, manual QA pass.
 
 ### What's done
 ✅ Task 20: useUrlState hook — debounced URL writes (150ms), initialises from window.location.search, 3 TDD tests
