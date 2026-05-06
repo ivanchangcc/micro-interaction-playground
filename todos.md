@@ -16,12 +16,12 @@ Checkpoint: Phase 1 complete ✅
 [x] Phase 2 — Task 13: ComponentPicker
 [x] Phase 2 — Task 14: Canvas wrapper
 Checkpoint: Phase 2 complete ✅
-[] Phase 3 — Task 15: ConfigPanel skeleton
-[] Phase 3 — Task 16: AnimationControls (tween + spring)
-[] Phase 3 — Task 17: CubicBezierEditor
-[] Phase 3 — Task 18: PresetPicker
-[] Phase 3 — Task 19: CodeSnippet
-Checkpoint: Phase 3 complete
+[x] Phase 3 — Task 15: ConfigPanel skeleton
+[x] Phase 3 — Task 16: AnimationControls (tween + spring)
+[x] Phase 3 — Task 17: CubicBezierEditor
+[x] Phase 3 — Task 18: PresetPicker
+[x] Phase 3 — Task 19: CodeSnippet
+Checkpoint: Phase 3 complete ✅
 [] Phase 4 — Task 20: useUrlState hook
 [] Phase 4 — Task 21: PlaygroundShell composition
 Checkpoint: Phase 4 complete

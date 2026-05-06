@@ -58,7 +58,7 @@ npm run test:watch
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
 2. Read the file `todos.md` and understand what's been done already
 3. Check out the feature branch: `git checkout feat/playground-implementation`
-4. **Next task to execute: Task 15 — ConfigPanel skeleton** (first task of Phase 3)
+4. **Next task to execute: Task 20 — useUrlState hook** (first task of Phase 4)
 5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
 6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
 7. After completing each phase, update the progress table below and push to GitHub.
@@ -116,11 +116,23 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 
 ---
 
-### 🔄 Phase 3 — Config panel (Tasks 15–19) — NEXT
+### ✅ Phase 3 — Config panel (Tasks 15–19) — COMPLETE
 
-ConfigPanel, AnimationControls, CubicBezierEditor, PresetPicker, CodeSnippet.
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 15 | ConfigPanel + PanelSection | `387d77a` | 320px aside panel shell |
+| 16 | AnimationControls + EasingSelect | `59bf1ff` | Tween/spring toggle, sliders, CubicBezierEditor stub |
+| 17 | CubicBezierEditor | `ff64859` | 4 inputs + SVG curve preview |
+| 18 | PresetPicker | `78e23c2` | Preset dropdown, bad-preset warning tooltip |
+| 19 | CodeSnippet | `faf2d4d` | CSS + Motion tabs, copy button |
 
-### ⏳ Phase 4 — State wiring (Tasks 20–21)
+**Decisions / deviations:**
+- `formatEase` type simplified from complex conditional to `{ cubicBezier: number[] } | string` for TypeScript compatibility
+- `LabeledSlider.onValueChange` uses `Array.isArray` guard for Slider type compatibility
+
+---
+
+### 🔄 Phase 4 — State wiring (Tasks 20–21) — NEXT
 
 `useUrlState`, `PlaygroundShell` full composition.
 
