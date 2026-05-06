@@ -12,10 +12,10 @@ Checkpoint: Phase 0 complete
 [x] Phase 1 — Task 10: configToCss / configToMotion (TDD)
 [x] Phase 1 — Task 11: useAnimationStyle hook
 Checkpoint: Phase 1 complete ✅
-[] Phase 2 — Task 12: TopBar + ShareButton + SideBySideToggle
-[] Phase 2 — Task 13: ComponentPicker
-[] Phase 2 — Task 14: Canvas wrapper
-Checkpoint: Phase 2 complete
+[x] Phase 2 — Task 12: TopBar + ShareButton + SideBySideToggle
+[x] Phase 2 — Task 13: ComponentPicker
+[x] Phase 2 — Task 14: Canvas wrapper
+Checkpoint: Phase 2 complete ✅
 [] Phase 3 — Task 15: ConfigPanel skeleton
 [] Phase 3 — Task 16: AnimationControls (tween + spring)
 [] Phase 3 — Task 17: CubicBezierEditor
@@ -77,5 +77,16 @@ lib/url-state.ts	Serialize/parse playground state to/from URL params
 lib/animation/presets.ts	4 named presets per component (including 1 intentionally "bad" one)
 lib/animation/apply.ts	Convert configs → CSS vars, CSS transition string, or Motion transition object
 hooks/useAnimationStyle.ts	React hook wrapping all the above for use in demo components
+
+## Phase 2 Complete
+
+### What's done
+✅ Task 12: TopBar (title + SideBySideToggle + ShareButton) — Toaster added to layout.tsx
+✅ Task 13: ComponentPicker dropdown — shadcn Select with all 17 components
+✅ Task 14: Canvas wrapper — single/side-by-side panes, Replay + Swap controls
+
+### Notes from this phase:
+No deviations from plan. ComponentPicker was temporarily stubbed in Task 12 and replaced with the real implementation in Task 13 to unblock TypeScript compilation.
+Next up: Phase 3 (Tasks 15–19) — ConfigPanel, AnimationControls, CubicBezierEditor, PresetPicker, CodeSnippet.
 
 

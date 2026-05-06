@@ -51,6 +51,7 @@ npm run test:watch
 - Tween configs flow through CSS custom properties (`--duration`, `--easing`) on a wrapper. Demos use `transition: 'X var(--duration) var(--easing)'` for the property they animate.
 - Spring configs flow through Motion's `<motion.div transition={{ type: 'spring', ... }}>`. Demos branch on `useAnimationStyle(config).isSpring`.
 - TDD-strict for `lib/` and `hooks/`. Smoke tests only for demos and UI components — animation correctness is verified by playing the playground, not by snapshot tests.
+- Once each phase is completed, update `CLAUDE.md` and `todos.md`
 
 ## Picking up in a new session
 
