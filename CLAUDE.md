@@ -11,9 +11,9 @@ A single-page Next.js playground where users tweak animation configs (tween or s
 
 ## Tech stack
 
-- Next.js 16 (App Router) · React 19 · TypeScript
-- Tailwind CSS v4 · shadcn/ui (New York / Neutral) · Motion (motion.dev) for springs
-- Vitest + @testing-library/react for tests
+- Next.js 16.2.4 (App Router) · React 19.2.4 · TypeScript 5
+- Tailwind CSS v4 · shadcn/ui v4 (base-nova / Neutral) · Motion 12.38 (motion.dev) for springs
+- Vitest 4.1.5 + @testing-library/react for tests
 - Sonner for toast notifications
 - Single page, fully client-rendered. URL is the source of truth for shared state.
 
@@ -52,6 +52,46 @@ npm run test:watch
 - Spring configs flow through Motion's `<motion.div transition={{ type: 'spring', ... }}>`. Demos branch on `useAnimationStyle(config).isSpring`.
 - TDD-strict for `lib/` and `hooks/`. Smoke tests only for demos and UI components — animation correctness is verified by playing the playground, not by snapshot tests.
 
-## Status
+## Implementation progress
 
-Tracked in the plan file's checkbox list. See `git log --oneline -20` for the latest commits.
+Subagent-driven execution on branch `feat/playground-implementation`. Pausing at phase checkpoints for review.
+
+### ✅ Phase 0 — Setup (Tasks 1–3) — COMPLETE
+
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 1 | Scaffold Next.js | `6be19c6` | Next 16.2.4, React 19.2.4, Tailwind v4, Turbopack |
+| 2 | Vitest + RTL | `f137967` | vitest 4.1.5, @testing-library/react 16.3.2 |
+| 3 | shadcn/ui + Motion | `9d1fa7b` | 15 primitives, Motion 12.38, sonner |
+
+**Decisions / deviations:**
+- shadcn v4 defaults to `base-nova` style (not "New York" — modern equivalent, plan updated)
+- `eslint.config.mjs` generated instead of `.eslintrc.json` (Next 16 flat-config; plan updated)
+- `shadcn` package appears in `dependencies` (how v4 init writes it; low priority to move)
+- Tooltip needs `<TooltipProvider>` wrap — handled locally inside `PresetPicker` (Task 18), no global wrap needed
+
+---
+
+### 🔄 Phase 1 — Animation lib (Tasks 4–11) — NEXT
+
+TDD tasks: types, defaults, component registry, URL serializer, URL parser, presets, config adapters (`configToCssVars` / `configToMotionTransition`), `useAnimationStyle` hook.
+
+### ⏳ Phase 2 — Shell layout (Tasks 12–14)
+
+TopBar, ComponentPicker, Canvas.
+
+### ⏳ Phase 3 — Config panel (Tasks 15–19)
+
+ConfigPanel, AnimationControls, CubicBezierEditor, PresetPicker, CodeSnippet.
+
+### ⏳ Phase 4 — State wiring (Tasks 20–21)
+
+`useUrlState`, `PlaygroundShell` full composition.
+
+### ⏳ Phase 5 — Demos (Tasks 22–38)
+
+Registry mechanism + all 17 component demos.
+
+### ⏳ Phase 6 — Polish (Tasks 39–41)
+
+Mobile notice, smoke tests, manual QA.
