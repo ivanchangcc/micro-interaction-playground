@@ -3,15 +3,15 @@
 [x] Phase 0 — Task 2: Add Vitest + RTL
 [x] Phase 0 — Task 3: Init shadcn/ui + Motion
 Checkpoint: Phase 0 complete
-[] Phase 1 — Task 4: AnimationConfig types
-[] Phase 1 — Task 5: Default configs (TDD)
-[] Phase 1 — Task 6: Component registry (TDD)
-[] Phase 1 — Task 7: URL state serializer (TDD)
-[] Phase 1 — Task 8: URL state parser (TDD)
-[] Phase 1 — Task 9: Presets (TDD)
-[] Phase 1 — Task 10: configToCss / configToMotion (TDD)
-[] Phase 1 — Task 11: useAnimationStyle hook
-Checkpoint: Phase 1 complete
+[x] Phase 1 — Task 4: AnimationConfig types
+[x] Phase 1 — Task 5: Default configs (TDD)
+[x] Phase 1 — Task 6: Component registry (TDD)
+[x] Phase 1 — Task 7: URL state serializer (TDD)
+[x] Phase 1 — Task 8: URL state parser (TDD)
+[x] Phase 1 — Task 9: Presets (TDD)
+[x] Phase 1 — Task 10: configToCss / configToMotion (TDD)
+[x] Phase 1 — Task 11: useAnimationStyle hook
+Checkpoint: Phase 1 complete ✅
 [] Phase 2 — Task 12: TopBar + ShareButton + SideBySideToggle
 [] Phase 2 — Task 13: ComponentPicker
 [] Phase 2 — Task 14: Canvas wrapper
