@@ -46,7 +46,10 @@ Checkpoint: Phase 5 complete ✅
 [x] Phase 6 — Task 39: Mobile notice
 [x] Phase 6 — Task 40: Smoke tests
 [x] Phase 6 — Task 41: Manual QA pass
-Final code review for entire implementation
+[x] Final code review for entire implementation
+
+## Known gaps (deferred post-v1)
+- Tablet bottom drawer (768–1024px): spec mentions collapsing config panel into a bottom drawer at this breakpoint; plan only scoped the <768px notice (Task 39). Not implemented.
 
 ## Phase 0 Checkpoint — setup complete
 

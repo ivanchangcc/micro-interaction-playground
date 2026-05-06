@@ -1,7 +1,7 @@
-import type { Easing } from 'motion/react';
+import type { Easing, Transition } from 'motion/react';
 import type { AnimationConfig, EasingValue } from './types';
 
-const NAMED_TO_MOTION: Record<string, Easing> = {
+export const NAMED_TO_MOTION: Record<string, Easing> = {
   linear: 'linear',
   ease: 'easeInOut',
   'ease-in': 'easeIn',
@@ -27,7 +27,7 @@ export function configToCssTransition(config: AnimationConfig): string {
   return `all ${config.duration}ms ${easingToCss(config.easing)}`;
 }
 
-export function configToMotionTransition(config: AnimationConfig) {
+export function configToMotionTransition(config: AnimationConfig): Transition {
   if (config.type === 'spring') {
     return {
       type: 'spring' as const,

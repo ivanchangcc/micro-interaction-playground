@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
@@ -8,11 +8,13 @@ import type { DemoProps } from './index';
 
 export default function ToastDemo({ config, triggerKey }: DemoProps) {
   const [visible, setVisible] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   function show() {
+    if (timerRef.current) clearTimeout(timerRef.current);
     setVisible(true);
-    setTimeout(() => setVisible(false), 2400);
+    timerRef.current = setTimeout(() => setVisible(false), 2400);
   }
 
   return (

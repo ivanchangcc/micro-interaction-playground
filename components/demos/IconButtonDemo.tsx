@@ -13,7 +13,7 @@ export default function IconButtonDemo({ config }: DemoProps) {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        transition={motionTransition as any}
+        transition={motionTransition}
         className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow ring-1 ring-border"
       >
         <Heart className="h-5 w-5" />

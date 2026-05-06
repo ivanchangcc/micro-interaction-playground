@@ -27,7 +27,7 @@ export default function CheckboxDemo({ config }: DemoProps) {
         <motion.span
           initial={false}
           animate={{ scale: checked ? 1 : 0, opacity: checked ? 1 : 0 }}
-          transition={motionTransition as any}
+          transition={motionTransition}
           className="text-white"
         >
           <Check className="h-4 w-4" strokeWidth={3} />

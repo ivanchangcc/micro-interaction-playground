@@ -14,8 +14,10 @@ export function CubicBezierEditor({
   function setAt(i: number, raw: string) {
     const n = Number(raw);
     if (Number.isNaN(n)) return;
+    // X1 (i=0) and X2 (i=2) must be in [0,1] per CSS spec; Y values may exceed for overshoot
+    const clamped = (i === 0 || i === 2) ? Math.min(1, Math.max(0, n)) : n;
     const next = [...value] as [number, number, number, number];
-    next[i] = n;
+    next[i] = clamped;
     onChange(next);
   }
 

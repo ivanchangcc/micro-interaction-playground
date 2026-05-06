@@ -12,7 +12,7 @@ export default function TextButtonDemo({ config }: DemoProps) {
       <motion.button
         whileHover={{ scale: 1.05, backgroundColor: '#27272a' }}
         whileTap={{ scale: 0.96 }}
-        transition={motionTransition as any}
+        transition={motionTransition}
         className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
       >
         Click me

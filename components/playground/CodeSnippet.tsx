@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Copy, Check } from 'lucide-react';
 import type { AnimationConfig } from '@/lib/animation/types';
-import { configToCssTransition } from '@/lib/animation/apply';
+import { configToCssTransition, NAMED_TO_MOTION } from '@/lib/animation/apply';
 
 export function CodeSnippet({ config }: { config: AnimationConfig }) {
   const css =
@@ -40,15 +40,8 @@ function formatEase(easing: { cubicBezier: readonly number[] } | string): string
     : `[${Array.from(easing.cubicBezier).join(', ')}]`;
 }
 
-function ease(name: string) {
-  const map: Record<string, string> = {
-    linear: 'linear',
-    ease: 'easeInOut',
-    'ease-in': 'easeIn',
-    'ease-out': 'easeOut',
-    'ease-in-out': 'easeInOut',
-  };
-  return map[name] ?? 'easeInOut';
+function ease(name: string): string {
+  return (NAMED_TO_MOTION[name] ?? 'easeInOut') as string;
 }
 
 function SnippetBlock({ code }: { code: string }) {

@@ -25,7 +25,7 @@ export default function ToggleDemo({ config }: DemoProps) {
         <motion.span
           className="absolute top-1 block h-6 w-6 rounded-full bg-white shadow"
           animate={{ x: on ? 24 : 4 }}
-          transition={motionTransition as any}
+          transition={motionTransition}
         />
       ) : (
         <span
