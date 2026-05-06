@@ -87,6 +87,18 @@ hooks/useAnimationStyle.ts	React hook wrapping all the above for use in demo com
 
 ### Notes from this phase:
 No deviations from plan. ComponentPicker was temporarily stubbed in Task 12 and replaced with the real implementation in Task 13 to unblock TypeScript compilation.
-Next up: Phase 3 (Tasks 15–19) — ConfigPanel, AnimationControls, CubicBezierEditor, PresetPicker, CodeSnippet.
 
+## Phase 3 Complete
 
+### What's done
+✅ Task 15: ConfigPanel + PanelSection — 320px aside panel shell
+✅ Task 16: AnimationControls + EasingSelect — tween/spring toggle, labeled sliders, CubicBezierEditor stub
+✅ Task 17: CubicBezierEditor — 4 number inputs + live SVG curve preview
+✅ Task 18: PresetPicker — preset dropdown with bad-preset warning tooltip (TooltipProvider local)
+✅ Task 19: CodeSnippet — CSS + Motion code tabs with copy-to-clipboard button
+
+### Notes from this phase:
+- `formatEase` type simplified to `{ cubicBezier: number[] } | string` (complex conditional type caused TS error)
+- `LabeledSlider.onValueChange` uses `Array.isArray` guard for shadcn Slider type compatibility
+- CubicBezierEditor stub created in Task 16, replaced with real implementation in Task 17
+Next up: Phase 4 (Tasks 20–21) — useUrlState hook + PlaygroundShell full composition.
