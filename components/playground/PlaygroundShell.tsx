@@ -10,6 +10,7 @@ import { CodeSnippet } from './CodeSnippet';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useUrlState } from '@/hooks/useUrlState';
 import { DemoFrame } from '@/components/demos/DemoFrame';
+import { getDemo } from '@/components/demos';
 import type { AnimationConfig } from '@/lib/animation/types';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
@@ -28,6 +29,7 @@ export function PlaygroundShell() {
   }
 
   const configB = state.configB ?? DEFAULT_TWEEN;
+  const Demo = getDemo(state.componentId);
 
   return (
     <div className="flex h-screen flex-col">
@@ -42,8 +44,8 @@ export function PlaygroundShell() {
       <div className="flex flex-1 overflow-hidden">
         <Canvas
           sideBySide={state.sideBySide}
-          paneA={<DemoFrame>Demo A (placeholder)</DemoFrame>}
-          paneB={<DemoFrame>Demo B (placeholder)</DemoFrame>}
+          paneA={<DemoFrame><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
+          paneB={<DemoFrame><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
           onReplay={() => setTriggerKey((k) => k + 1)}
           onSwap={swapConfigs}
         />
