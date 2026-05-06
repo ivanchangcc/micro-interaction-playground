@@ -74,7 +74,7 @@ test/
 ### Task 1: Scaffold Next.js project
 
 **Files:**
-- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`, `postcss.config.mjs`, `.eslintrc.json`
+- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`, `postcss.config.mjs`, `eslint.config.mjs`
 - Modify: `.gitignore` (already exists)
 
 - [ ] **Step 1: Run create-next-app**
@@ -184,7 +184,7 @@ git commit -m "chore: add vitest + react testing library"
 npx shadcn@latest init -d
 ```
 
-Accept defaults (New York style, Neutral base color, CSS variables on). This creates `components.json`, updates `app/globals.css` with theme tokens, and adds `lib/utils.ts`.
+Accept defaults (shadcn v4 ships "base-nova" as the current default style, Neutral base color, CSS variables on). This creates `components.json`, updates `app/globals.css` with theme tokens, and adds `lib/utils.ts`.
 
 - [ ] **Step 2: Add the primitives we'll need across the playground**
 
