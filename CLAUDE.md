@@ -57,7 +57,7 @@ npm run test:watch
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
 2. Read the file `todos.md` and understand what's been done already
 3. Check out the feature branch: `git checkout feat/playground-implementation`
-4. **Next task to execute: Task 12 — TopBar** (first task of Phase 2)
+4. **Next task to execute: Task 15 — ConfigPanel skeleton** (first task of Phase 3)
 5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
 6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
 7. After completing each phase, update the progress table below and push to GitHub.
@@ -103,11 +103,19 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 
 ---
 
-### 🔄 Phase 2 — Shell layout (Tasks 12–14) — NEXT
+### ✅ Phase 2 — Shell layout (Tasks 12–14) — COMPLETE
 
-TopBar, ComponentPicker, Canvas.
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 12 | TopBar + SideBySideToggle + ShareButton | `e92a9f1` | Toaster added to layout.tsx; clipboard share |
+| 13 | ComponentPicker dropdown | `87254b5` | shadcn Select, all 17 components |
+| 14 | Canvas wrapper | `90ee279` | Single/side-by-side panes, Replay + Swap controls |
 
-### ⏳ Phase 3 — Config panel (Tasks 15–19)
+**Decisions / deviations:** None — plan followed exactly.
+
+---
+
+### 🔄 Phase 3 — Config panel (Tasks 15–19) — NEXT
 
 ConfigPanel, AnimationControls, CubicBezierEditor, PresetPicker, CodeSnippet.
 
