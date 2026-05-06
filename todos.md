@@ -22,9 +22,9 @@ Checkpoint: Phase 2 complete ✅
 [x] Phase 3 — Task 18: PresetPicker
 [x] Phase 3 — Task 19: CodeSnippet
 Checkpoint: Phase 3 complete ✅
-[] Phase 4 — Task 20: useUrlState hook
-[] Phase 4 — Task 21: PlaygroundShell composition
-Checkpoint: Phase 4 complete
+[x] Phase 4 — Task 20: useUrlState hook
+[x] Phase 4 — Task 21: PlaygroundShell composition
+Checkpoint: Phase 4 complete ✅
 [] Phase 5 — Task 22: Demo registry mechanism
 [] Phase 5 — Task 23: ToggleDemo
 [] Phase 5 — Task 24: CheckboxDemo
@@ -102,3 +102,13 @@ No deviations from plan. ComponentPicker was temporarily stubbed in Task 12 and 
 - `LabeledSlider.onValueChange` uses `Array.isArray` guard for shadcn Slider type compatibility
 - CubicBezierEditor stub created in Task 16, replaced with real implementation in Task 17
 Next up: Phase 4 (Tasks 20–21) — useUrlState hook + PlaygroundShell full composition.
+
+## Phase 4 Complete
+
+### What's done
+✅ Task 20: useUrlState hook — debounced URL writes (150ms), initialises from window.location.search, 3 TDD tests
+✅ Task 21: PlaygroundShell + DemoFrame + app/page.tsx — full composition; dev server verified: top bar, canvas, config panel, A/B tabs all render
+
+### Notes from this phase:
+No deviations from plan. Dev server confirmed working at localhost:3000 — canvas shows placeholder text, all controls (preset picker, animation sliders, code snippet) render and are interactive.
+Next up: Phase 5 (Tasks 22–38) — demo registry loader + all 17 component demos.

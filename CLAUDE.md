@@ -58,7 +58,7 @@ npm run test:watch
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
 2. Read the file `todos.md` and understand what's been done already
 3. Check out the feature branch: `git checkout feat/playground-implementation`
-4. **Next task to execute: Task 20 — useUrlState hook** (first task of Phase 4)
+4. **Next task to execute: Task 22 — Demo registry mechanism** (first task of Phase 5)
 5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
 6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
 7. After completing each phase, update the progress table below and push to GitHub.
@@ -132,11 +132,18 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 
 ---
 
-### 🔄 Phase 4 — State wiring (Tasks 20–21) — NEXT
+### ✅ Phase 4 — State wiring (Tasks 20–21) — COMPLETE
 
-`useUrlState`, `PlaygroundShell` full composition.
+| Task | What | Commit | Notes |
+|------|------|--------|-------|
+| 20 | useUrlState hook | `73d7051` | Debounced URL writes, 3 TDD tests passing |
+| 21 | PlaygroundShell + DemoFrame + page.tsx | `45d2ee5` | Full composition; dev server verified working |
 
-### ⏳ Phase 5 — Demos (Tasks 22–38)
+**Decisions / deviations:** None — plan followed exactly. Dev server confirmed top bar, config panel, A/B tabs all render correctly.
+
+---
+
+### 🔄 Phase 5 — Demos (Tasks 22–38) — NEXT
 
 Registry mechanism + all 17 component demos.
 
