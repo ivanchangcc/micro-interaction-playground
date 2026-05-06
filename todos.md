@@ -64,3 +64,18 @@ Tooltip needs <TooltipProvider> wrapping. The plan handles this locally inside P
 Reviewer subagent hit a usage limit during Task 2's spec review, so I verified that one inline. For mechanical Phase 0 tasks this was fine; Phase 1 has real code (TDD lib utilities) where reviewer subagents add more value.
 Next up: Phase 1 (Tasks 4–11) — animation lib code, all TDD. 8 small, focused tasks (types, defaults, registry, URL serializer, URL parser, presets, apply adapters, useAnimationStyle hook).
 
+## Phase 1 Complete
+
+### What's done
+All 8 tasks done, 29 tests passing. Here's what was built:
+
+File	What it does
+lib/animation/types.ts	Core types: TweenConfig, SpringConfig, AnimationConfig, SLIDER_LIMITS
+lib/animation/defaults.ts	DEFAULT_TWEEN (250ms Material curve) and DEFAULT_SPRING (iOS-feel)
+components/demos/registry.ts	All 17 component IDs with human labels
+lib/url-state.ts	Serialize/parse playground state to/from URL params
+lib/animation/presets.ts	4 named presets per component (including 1 intentionally "bad" one)
+lib/animation/apply.ts	Convert configs → CSS vars, CSS transition string, or Motion transition object
+hooks/useAnimationStyle.ts	React hook wrapping all the above for use in demo components
+
+
