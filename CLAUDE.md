@@ -55,11 +55,12 @@ npm run test:watch
 ## Picking up in a new session
 
 1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
-2. Check out the feature branch: `git checkout feat/playground-implementation`
-3. **Next task to execute: Task 4 — AnimationConfig types** (first task of Phase 1)
-4. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
-5. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
-6. After completing each phase, update the progress table below and push to GitHub.
+2. Read the file `todos.md` and understand what's been done already
+3. Check out the feature branch: `git checkout feat/playground-implementation`
+4. **Next task to execute: Task 4 — AnimationConfig types** (first task of Phase 1)
+5. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
+6. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
+7. After completing each phase, update the progress table below and push to GitHub.
 
 ---
 
