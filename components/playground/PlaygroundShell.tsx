@@ -7,6 +7,7 @@ import { ConfigPanel, PanelSection } from './ConfigPanel';
 import { AnimationControls } from './AnimationControls';
 import { PresetPicker } from './PresetPicker';
 import { CodeSnippet } from './CodeSnippet';
+import { MobileNotice } from './MobileNotice';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useUrlState } from '@/hooks/useUrlState';
 import { DemoFrame } from '@/components/demos/DemoFrame';
@@ -32,55 +33,58 @@ export function PlaygroundShell() {
   const Demo = getDemo(state.componentId);
 
   return (
-    <div className="flex h-screen flex-col">
-      <TopBar
-        componentId={state.componentId}
-        onComponentChange={(id) => setState((s) => ({ ...s, componentId: id }))}
-        sideBySide={state.sideBySide}
-        onSideBySideChange={(next) =>
-          setState((s) => ({ ...s, sideBySide: next, configB: s.configB ?? DEFAULT_TWEEN }))
-        }
-      />
-      <div className="flex flex-1 overflow-hidden">
-        <Canvas
+    <>
+      <MobileNotice />
+      <div className="hidden h-screen flex-col md:flex">
+        <TopBar
+          componentId={state.componentId}
+          onComponentChange={(id) => setState((s) => ({ ...s, componentId: id }))}
           sideBySide={state.sideBySide}
-          paneA={<DemoFrame><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
-          paneB={<DemoFrame><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
-          onReplay={() => setTriggerKey((k) => k + 1)}
-          onSwap={swapConfigs}
+          onSideBySideChange={(next) =>
+            setState((s) => ({ ...s, sideBySide: next, configB: s.configB ?? DEFAULT_TWEEN }))
+          }
         />
-        <ConfigPanel>
-          {state.sideBySide ? (
-            <Tabs defaultValue="a">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="a">A</TabsTrigger>
-                <TabsTrigger value="b">B</TabsTrigger>
-              </TabsList>
-              <TabsContent value="a" className="mt-4">
-                <PanelTabContents
-                  componentId={state.componentId}
-                  config={state.configA}
-                  onChange={setConfigA}
-                />
-              </TabsContent>
-              <TabsContent value="b" className="mt-4">
-                <PanelTabContents
-                  componentId={state.componentId}
-                  config={configB}
-                  onChange={setConfigB}
-                />
-              </TabsContent>
-            </Tabs>
-          ) : (
-            <PanelTabContents
-              componentId={state.componentId}
-              config={state.configA}
-              onChange={setConfigA}
-            />
-          )}
-        </ConfigPanel>
+        <div className="flex flex-1 overflow-hidden">
+          <Canvas
+            sideBySide={state.sideBySide}
+            paneA={<DemoFrame><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
+            paneB={<DemoFrame><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
+            onReplay={() => setTriggerKey((k) => k + 1)}
+            onSwap={swapConfigs}
+          />
+          <ConfigPanel>
+            {state.sideBySide ? (
+              <Tabs defaultValue="a">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="a">A</TabsTrigger>
+                  <TabsTrigger value="b">B</TabsTrigger>
+                </TabsList>
+                <TabsContent value="a" className="mt-4">
+                  <PanelTabContents
+                    componentId={state.componentId}
+                    config={state.configA}
+                    onChange={setConfigA}
+                  />
+                </TabsContent>
+                <TabsContent value="b" className="mt-4">
+                  <PanelTabContents
+                    componentId={state.componentId}
+                    config={configB}
+                    onChange={setConfigB}
+                  />
+                </TabsContent>
+              </Tabs>
+            ) : (
+              <PanelTabContents
+                componentId={state.componentId}
+                config={state.configA}
+                onChange={setConfigA}
+              />
+            )}
+          </ConfigPanel>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
