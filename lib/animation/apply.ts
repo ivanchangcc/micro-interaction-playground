@@ -26,7 +26,7 @@ export function configToCssTransition(config: AnimationConfig): string {
   return `all ${config.duration}ms ${easingToCss(config.easing)}`;
 }
 
-export function configToMotionTransition(config: AnimationConfig) {
+export function configToMotionTransition(config: AnimationConfig): any {
   if (config.type === 'spring') {
     return {
       type: 'spring' as const,
