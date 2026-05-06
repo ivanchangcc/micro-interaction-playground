@@ -167,3 +167,9 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 | 39 | Mobile notice | `77fb87e` | `MobileNotice` with `md:hidden`, shown below 768px |
 | 40 | Smoke tests | `c135c1a` | 34 tests × all 17 demos × tween + spring |
 | 41 | Manual QA pass | — | 66/66 tests pass, 0 TS errors, all flows verified |
+
+**Decisions / deviations:**
+- Mobile notice uses Tailwind `md:hidden` — no JS resize listener needed
+- Smoke tests import demos directly to bypass `next/dynamic` in jsdom
+- QA completed via code audit + curl + test suite (Playwright MCP was locked by another session)
+- All 41 tasks complete. Playground is feature-complete per spec.
