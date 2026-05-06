@@ -52,6 +52,17 @@ npm run test:watch
 - Spring configs flow through Motion's `<motion.div transition={{ type: 'spring', ... }}>`. Demos branch on `useAnimationStyle(config).isSpring`.
 - TDD-strict for `lib/` and `hooks/`. Smoke tests only for demos and UI components — animation correctness is verified by playing the playground, not by snapshot tests.
 
+## Picking up in a new session
+
+1. Read this file and the plan: `docs/superpowers/plans/2026-05-05-micro-interaction-playground.md`
+2. Check out the feature branch: `git checkout feat/playground-implementation`
+3. **Next task to execute: Task 4 — AnimationConfig types** (first task of Phase 1)
+4. Use the `superpowers:subagent-driven-development` skill to continue dispatching subagents per task.
+5. Pause at each phase checkpoint (after Tasks 11, 14, 19, 21, 38, 41) for user review before continuing.
+6. After completing each phase, update the progress table below and push to GitHub.
+
+---
+
 ## Implementation progress
 
 Subagent-driven execution on branch `feat/playground-implementation`. Pausing at phase checkpoints for review.
