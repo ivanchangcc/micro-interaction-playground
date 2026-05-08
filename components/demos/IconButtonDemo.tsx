@@ -1,14 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function IconButtonDemo({ config }: DemoProps) {
+const IconButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function IconButtonDemo({ config }, ref) {
   const [liked, setLiked] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setLiked((v) => !v),
+  });
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -46,4 +52,6 @@ export default function IconButtonDemo({ config }: DemoProps) {
     </button>
     </div>
   );
-}
+});
+
+export default IconButtonDemo;

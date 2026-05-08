@@ -1,11 +1,18 @@
 'use client';
 
+import { forwardRef } from 'react';
 import { motion } from 'motion/react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function TextButtonDemo({ config }: DemoProps) {
+const TextButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function TextButtonDemo({ config }, ref) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => {},
+  });
 
   if (isSpring) {
     return (
@@ -33,4 +40,6 @@ export default function TextButtonDemo({ config }: DemoProps) {
       </button>
     </div>
   );
-}
+});
+
+export default TextButtonDemo;
