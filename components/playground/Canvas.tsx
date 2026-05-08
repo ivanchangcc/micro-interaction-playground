@@ -27,18 +27,20 @@ export function Canvas({ paneA, paneB, sideBySide, onReplay, onSwap }: Props) {
           <Pane>{paneA}</Pane>
         )}
       </div>
-      <div className="flex h-12 items-center justify-center gap-2 border-t bg-background">
-        <Button size="sm" onClick={onReplay}>
-          <Play className="mr-2 h-3.5 w-3.5" />
-          {sideBySide ? 'Trigger both' : 'Replay'}
-        </Button>
-        {sideBySide && onSwap && (
-          <Button size="sm" variant="outline" onClick={onSwap}>
-            <ArrowLeftRight className="mr-2 h-3.5 w-3.5" />
-            Swap
+      {sideBySide && (
+        <div className="flex h-12 items-center justify-center gap-2 border-t bg-background">
+          <Button size="sm" onClick={onReplay}>
+            <Play className="mr-2 h-3.5 w-3.5" />
+            Trigger both
           </Button>
-        )}
-      </div>
+          {onSwap && (
+            <Button size="sm" variant="outline" onClick={onSwap}>
+              <ArrowLeftRight className="mr-2 h-3.5 w-3.5" />
+              Swap
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
