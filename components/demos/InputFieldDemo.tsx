@@ -21,7 +21,7 @@ export default function InputFieldDemo({ config }: DemoProps) {
           onChange={(e) => setValue(e.currentTarget.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          className="block w-full rounded-md border-2 bg-white px-3 pb-2 pt-5 text-sm outline-none"
+          className="block w-full rounded-md border-2 bg-white px-3 pb-2 pt-5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           style={{
             borderColor: focused ? '#18181b' : '#e4e4e7',
             ...(isSpring ? {} : { transition: 'border-color var(--duration) var(--easing)', ...cssStyle }),
@@ -31,18 +31,18 @@ export default function InputFieldDemo({ config }: DemoProps) {
           <motion.label
             onClick={() => ref.current?.focus()}
             initial={false}
-            animate={floated ? { y: -10, scale: 0.8, color: '#18181b' } : { y: 0, scale: 1, color: '#71717a' }}
+            animate={floated ? { y: -14, scale: 0.8, color: '#18181b' } : { y: 0, scale: 1, color: '#71717a' }}
             transition={motionTransition}
-            className="pointer-events-none absolute left-3 top-3 origin-top-left text-sm"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 origin-top-left text-sm"
           >
             Email
           </motion.label>
         ) : (
           <label
             onClick={() => ref.current?.focus()}
-            className="pointer-events-none absolute left-3 top-3 origin-top-left text-sm"
+            className="pointer-events-none absolute left-3 top-1/2 origin-top-left text-sm"
             style={{
-              transform: floated ? 'translateY(-10px) scale(0.8)' : 'translateY(0) scale(1)',
+              transform: floated ? 'translateY(calc(-50% - 14px)) scale(0.8)' : 'translateY(-50%) scale(1)',
               color: floated ? '#18181b' : '#71717a',
               transition: 'transform var(--duration) var(--easing), color var(--duration) var(--easing)',
               ...cssStyle,

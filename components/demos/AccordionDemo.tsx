@@ -13,18 +13,18 @@ const ITEMS = [
 ];
 
 export default function AccordionDemo({ config }: DemoProps) {
-  const [open, setOpen] = useState<string | null>('1');
+  const [open, setOpen] = useState<string[]>(['1']);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
     <div className="w-full max-w-md space-y-1">
       {ITEMS.map((it) => {
-        const isOpen = open === it.id;
+        const isOpen = open.includes(it.id);
         return (
           <div key={it.id} className="overflow-hidden rounded border bg-white">
             <button
               className="flex w-full items-center justify-between px-3 py-2 text-sm font-medium"
-              onClick={() => setOpen((cur) => (cur === it.id ? null : it.id))}
+              onClick={() => setOpen((cur) => cur.includes(it.id) ? cur.filter((id) => id !== it.id) : [...cur, it.id])}
             >
               {it.title}
               <ChevronDown

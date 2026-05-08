@@ -12,7 +12,7 @@ const SEED = ['design', 'animation', 'react', 'product', 'frontend'];
 export default function ChipsDemo({ config }: DemoProps) {
   const [chips, setChips] = useState<string[]>(SEED);
   const [pool, setPool] = useState<string[]>(['css', 'spring', 'ux', 'tailwind']);
-  const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+  const { motionTransition } = useAnimationStyle(config);
 
   function remove(label: string) {
     setChips((cs) => cs.filter((c) => c !== label));
@@ -26,40 +26,23 @@ export default function ChipsDemo({ config }: DemoProps) {
   return (
     <div className="flex w-full max-w-md flex-col gap-4">
       <div className="flex flex-wrap gap-2">
-        {isSpring ? (
-          <AnimatePresence mode="popLayout">
-            {chips.map((label) => (
-              <motion.button
-                key={label}
-                layout
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                transition={motionTransition}
-                onClick={() => remove(label)}
-                className="flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1 text-xs"
-              >
-                {label}
-                <X className="h-3 w-3" />
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        ) : (
-          chips.map((label) => (
-            <button
+        <AnimatePresence mode="popLayout">
+          {chips.map((label) => (
+            <motion.button
               key={label}
+              layout
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.6 }}
+              transition={motionTransition}
               onClick={() => remove(label)}
               className="flex items-center gap-1 rounded-full bg-zinc-100 px-3 py-1 text-xs"
-              style={{
-                transition: 'all var(--duration) var(--easing)',
-                ...cssStyle,
-              }}
             >
               {label}
               <X className="h-3 w-3" />
-            </button>
-          ))
-        )}
+            </motion.button>
+          ))}
+        </AnimatePresence>
       </div>
       <div className="flex flex-col gap-1.5">
         <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Add</span>

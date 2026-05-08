@@ -56,7 +56,7 @@ function SnippetBlock({ code }: { code: string }) {
       <pre className="overflow-x-auto rounded border bg-muted/40 p-2 text-[11px] leading-snug">
         <code>{code}</code>
       </pre>
-      <Button size="icon" variant="ghost" className="absolute right-1 top-1 h-6 w-6" onClick={copy}>
+      <Button size="icon" variant="secondary" className="absolute right-1 top-1 h-6 w-6 bg-muted hover:bg-muted/80" onClick={copy}>
         {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
       </Button>
     </div>

@@ -17,7 +17,7 @@ export default function SliderDemo({ config }: DemoProps) {
         max={100}
         value={target}
         onChange={(e) => setTarget(Number(e.currentTarget.value))}
-        className="w-full"
+        className="w-full [accent-color:#18181b]"
       />
       <div className="relative h-1 w-full rounded-full bg-zinc-200">
         {isSpring ? (

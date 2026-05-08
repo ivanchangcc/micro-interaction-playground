@@ -23,7 +23,7 @@ export function ComponentPicker({
   return (
     <Select value={value} onValueChange={(v) => onChange(v as ComponentId)}>
       <SelectTrigger className="w-[200px]">
-        <SelectValue />
+        <SelectValue>{getComponentLabel(value)}</SelectValue>
       </SelectTrigger>
       <SelectContent>
         {COMPONENT_IDS.map((id) => (

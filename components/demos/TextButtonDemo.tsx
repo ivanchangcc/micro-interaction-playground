@@ -23,7 +23,7 @@ export default function TextButtonDemo({ config }: DemoProps) {
   return (
     <button
       type="button"
-      className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:scale-105 hover:bg-zinc-800 active:scale-95"
+      className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-muted hover:scale-105 active:scale-95"
       style={{ transition: 'transform var(--duration) var(--easing), background-color var(--duration) var(--easing)', ...cssStyle }}
     >
       Click me
