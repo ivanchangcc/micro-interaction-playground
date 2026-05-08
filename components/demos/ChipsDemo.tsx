@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const SEED = ['design', 'animation', 'react', 'product', 'frontend'];
 
-export default function ChipsDemo({ config }: DemoProps) {
+const ChipsDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ChipsDemo({ config }, ref) {
   const [chips, setChips] = useState<string[]>(SEED);
   const [pool, setPool] = useState<string[]>(['css', 'spring', 'ux', 'tailwind']);
   const { motionTransition } = useAnimationStyle(config);
@@ -22,6 +23,28 @@ export default function ChipsDemo({ config }: DemoProps) {
     setChips((cs) => (cs.includes(label) ? cs : [...cs, label]));
     setPool((p) => p.filter((c) => c !== label));
   }
+
+  useDemoTrigger(ref, {
+    kind: 'dual',
+    primaryLabel: 'Add chip',
+    primary: () => {
+      setPool((currentPool) => {
+        if (currentPool.length === 0) return currentPool;
+        const label = currentPool[0];
+        setChips((cs) => (cs.includes(label) ? cs : [...cs, label]));
+        return currentPool.slice(1);
+      });
+    },
+    secondaryLabel: 'Remove chip',
+    secondary: () => {
+      setChips((currentChips) => {
+        if (currentChips.length === 0) return currentChips;
+        const label = currentChips[currentChips.length - 1];
+        setPool((p) => (p.includes(label) ? p : [...p, label]));
+        return currentChips.slice(0, -1);
+      });
+    },
+  });
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">
@@ -63,4 +86,6 @@ export default function ChipsDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default ChipsDemo;

@@ -1,16 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DOW = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-export default function DatePickerDemo({ config }: DemoProps) {
+const DatePickerDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DatePickerDemo({ config }, ref) {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState({ month: 4, year: 2026 }); // May 2026
   const [selected, setSelected] = useState<{ day: number; month: number; year: number } | null>(null);
@@ -33,6 +34,11 @@ export default function DatePickerDemo({ config }: DemoProps) {
       return { month: m, year: y };
     });
   }
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setOpen((v) => !v),
+  });
 
   const triggerLabel = selected
     ? `${MONTH_NAMES[selected.month]} ${selected.day}, ${selected.year}`
@@ -92,7 +98,9 @@ export default function DatePickerDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default DatePickerDemo;
 
 function CalendarPanel({
   view, cells, selected, onPrev, onNext, onPick,

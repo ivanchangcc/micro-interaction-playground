@@ -1,21 +1,29 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function ToastDemo({ config, triggerKey }: DemoProps) {
+const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ config }, ref) {
   const [visible, setVisible] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   function show() {
     if (timerRef.current) clearTimeout(timerRef.current);
+    setToastKey((k) => k + 1);
     setVisible(true);
     timerRef.current = setTimeout(() => setVisible(false), 2400);
   }
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: show,
+  });
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[20px] border-2 bg-zinc-50">
@@ -29,7 +37,7 @@ export default function ToastDemo({ config, triggerKey }: DemoProps) {
         <AnimatePresence>
           {visible && (
             <motion.div
-              key={triggerKey}
+              key={toastKey}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 200 }}
@@ -42,7 +50,7 @@ export default function ToastDemo({ config, triggerKey }: DemoProps) {
         </AnimatePresence>
       ) : (
         <div
-          key={triggerKey}
+          key={toastKey}
           className="absolute right-3 top-10 w-[200px] rounded-md bg-zinc-900 px-3 py-2 text-xs text-white shadow-lg"
           style={{
             opacity: visible ? 1 : 0,
@@ -56,4 +64,6 @@ export default function ToastDemo({ config, triggerKey }: DemoProps) {
       )}
     </div>
   );
-}
+});
+
+export default ToastDemo;

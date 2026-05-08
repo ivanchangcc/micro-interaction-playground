@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Home, Settings, User, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const ITEMS = [
@@ -14,9 +15,14 @@ const ITEMS = [
   { icon: Settings, label: 'Settings' },
 ];
 
-export default function SideMenuDemo({ config }: DemoProps) {
+const SideMenuDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SideMenuDemo({ config }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setOpen((v) => !v),
+  });
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -83,7 +89,9 @@ export default function SideMenuDemo({ config }: DemoProps) {
     </div>
     </div>
   );
-}
+});
+
+export default SideMenuDemo;
 
 function SideMenuContent({ onClose }: { onClose: () => void }) {
   return (
