@@ -1,16 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const ITEMS = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Honeydew'];
 
-export default function DropdownDemo({ config }: DemoProps) {
+const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownDemo({ config }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setOpen((v) => !v),
+  });
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -57,4 +63,6 @@ export default function DropdownDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default DropdownDemo;

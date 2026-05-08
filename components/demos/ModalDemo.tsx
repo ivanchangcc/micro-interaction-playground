@@ -1,14 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function ModalDemo({ config }: DemoProps) {
+const ModalDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ModalDemo({ config }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => {
+      setOpen(true);
+      setTimeout(() => setOpen(false), 2000);
+    },
+  });
 
   return (
     <div className="relative flex h-full w-full items-center justify-center">
@@ -75,4 +84,6 @@ export default function ModalDemo({ config }: DemoProps) {
       )}
     </div>
   );
-}
+});
+
+export default ModalDemo;
