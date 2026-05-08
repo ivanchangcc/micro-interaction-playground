@@ -16,7 +16,7 @@ const SearchInputDemo = forwardRef<DemoTriggerHandle, DemoProps>(function Search
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
   const filtered = q ? DATA.filter((d) => d.toLowerCase().includes(q.toLowerCase())) : [];
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => {
       const input = searchInputRef.current;
@@ -25,7 +25,7 @@ const SearchInputDemo = forwardRef<DemoTriggerHandle, DemoProps>(function Search
       setTimeout(() => { setQ('but'); }, 200);
       setTimeout(() => { setQ(''); input.blur(); }, 800);
     },
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-start justify-center pt-8">

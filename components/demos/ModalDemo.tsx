@@ -11,13 +11,13 @@ const ModalDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ModalDemo({ 
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => {
       setOpen(true);
       setTimeout(() => setOpen(false), 2000);
     },
-  });
+  }), []);
 
   return (
     <div className="relative flex h-full w-full items-center justify-center">

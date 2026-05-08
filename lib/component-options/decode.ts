@@ -17,10 +17,13 @@ const TOAST_CODE_TO_DIR: Record<string, ToastDirection> = {
 const SIDE_MENU_KINDS: SideMenuKind[] = ['slide', 'dissolve', 'scale', 'push'];
 const SIDE_MENU_SIDES: SideMenuSide[] = ['left', 'right'];
 
-function parseNum(raw: string | null): number | null {
+function parseNum(raw: string | null, min?: number, max?: number): number | null {
   if (raw == null) return null;
   const n = Number(raw);
-  return Number.isNaN(n) ? null : n;
+  if (Number.isNaN(n)) return null;
+  if (min !== undefined && n < min) return null;
+  if (max !== undefined && n > max) return null;
+  return n;
 }
 
 function parseBool(raw: string | null): boolean | null {
@@ -69,26 +72,26 @@ export function decodeComponentOptions(
   }
 
   if (optionsKey === 'iconButton') {
-    const hov = parseNum(params.get(k('iconButton.hov')));
-    const pre = parseNum(params.get(k('iconButton.pre')));
+    const hov = parseNum(params.get(k('iconButton.hov')), 1.0, 1.5);
+    const pre = parseNum(params.get(k('iconButton.pre')), 0.5, 1.0);
     return hov !== null && pre !== null
       ? { iconButton: { hoverScale: hov, pressScale: pre } }
       : {};
   }
 
   if (optionsKey === 'textButton') {
-    const hov = parseNum(params.get(k('textButton.hov')));
-    const pre = parseNum(params.get(k('textButton.pre')));
+    const hov = parseNum(params.get(k('textButton.hov')), 1.0, 1.5);
+    const pre = parseNum(params.get(k('textButton.pre')), 0.5, 1.0);
     return hov !== null && pre !== null
       ? { textButton: { hoverScale: hov, pressScale: pre } }
       : {};
   }
 
   if (optionsKey === 'slider') {
-    const inc = parseNum(params.get(k('slider.inc')));
-    const s = parseNum(params.get(k('slider.s')));
-    const d = parseNum(params.get(k('slider.d')));
-    const m = parseNum(params.get(k('slider.m')));
+    const inc = parseNum(params.get(k('slider.inc')), 1, 25);
+    const s = parseNum(params.get(k('slider.s')), 1, 500);
+    const d = parseNum(params.get(k('slider.d')), 1, 50);
+    const m = parseNum(params.get(k('slider.m')), 0.1, 10);
     if (inc !== null && s !== null && d !== null && m !== null) {
       return {
         slider: {

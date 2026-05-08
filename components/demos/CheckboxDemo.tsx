@@ -11,10 +11,10 @@ const CheckboxDemo = forwardRef<DemoTriggerHandle, DemoProps>(function CheckboxD
   const [checked, setChecked] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setChecked((v) => !v),
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

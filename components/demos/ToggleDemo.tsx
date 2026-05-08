@@ -10,10 +10,10 @@ const ToggleDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToggleDemo(
   const [on, setOn] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setOn((v) => !v),
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

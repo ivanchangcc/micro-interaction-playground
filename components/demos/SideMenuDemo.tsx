@@ -21,10 +21,10 @@ const SideMenuDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SideMenuD
   const [open, setOpen] = useState(false);
   const { motionTransition } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setOpen((v) => !v),
-  });
+  }), []);
 
   const isLeft = opts.side === 'left';
   const MENU_WIDTH = '14rem'; // w-56

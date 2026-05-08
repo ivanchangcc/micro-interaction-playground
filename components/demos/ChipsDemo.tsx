@@ -24,7 +24,7 @@ const ChipsDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ChipsDemo({ 
     setPool((p) => p.filter((c) => c !== label));
   }
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'dual',
     primaryLabel: 'Add chip',
     primary: () => {
@@ -44,7 +44,7 @@ const ChipsDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ChipsDemo({ 
         return currentChips.slice(0, -1);
       });
     },
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">

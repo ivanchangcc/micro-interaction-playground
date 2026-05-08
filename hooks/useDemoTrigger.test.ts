@@ -12,7 +12,7 @@ describe('useDemoTrigger', () => {
     };
     const { result } = renderHook(() => {
       const ref = useRef<DemoTriggerHandle>(null);
-      useDemoTrigger(ref, handle);
+      useDemoTrigger(ref, () => handle, []);
       return ref;
     });
     expect(result.current.current?.kind).toBe('single');

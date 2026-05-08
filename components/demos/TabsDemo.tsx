@@ -19,10 +19,10 @@ const TabsDemo = forwardRef<DemoTriggerHandle, DemoProps>(function TabsDemo({ co
     if (el) setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
   }, [active]);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setActive((v) => (v + 1) % TABS.length),
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

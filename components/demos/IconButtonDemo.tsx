@@ -13,23 +13,27 @@ const IconButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function IconBut
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
   const { hoverScale, pressScale } = options.iconButton ?? DEFAULT_ICON_BUTTON;
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setLiked((v) => !v),
-  });
+  }), []);
+
+  const hoverTapTransition = isSpring
+    ? motionTransition
+    : { duration: 0.12, ease: 'easeOut' };
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      {isSpring ? (
-        <motion.button
-          type="button"
-          onClick={() => setLiked((v) => !v)}
-          aria-pressed={liked}
-          whileHover={{ scale: hoverScale }}
-          whileTap={{ scale: pressScale }}
-          transition={motionTransition}
-          className="grid h-12 w-12 place-items-center rounded-full hover:bg-muted"
-        >
+      <motion.button
+        type="button"
+        onClick={() => setLiked((v) => !v)}
+        aria-pressed={liked}
+        whileHover={{ scale: hoverScale }}
+        whileTap={{ scale: pressScale }}
+        transition={hoverTapTransition}
+        className="grid h-12 w-12 place-items-center rounded-full hover:bg-muted"
+      >
+        {isSpring ? (
           <motion.span
             animate={{ scale: liked ? [1, 1.3, 1] : 1 }}
             transition={motionTransition}
@@ -41,14 +45,7 @@ const IconButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function IconBut
               color={liked ? '#ef4444' : 'currentColor'}
             />
           </motion.span>
-        </motion.button>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setLiked((v) => !v)}
-          aria-pressed={liked}
-          className="grid h-12 w-12 place-items-center rounded-full hover:bg-muted"
-        >
+        ) : (
           <span className="inline-flex">
             <Heart
               className="h-6 w-6"
@@ -60,8 +57,8 @@ const IconButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function IconBut
               }}
             />
           </span>
-        </button>
-      )}
+        )}
+      </motion.button>
     </div>
   );
 });

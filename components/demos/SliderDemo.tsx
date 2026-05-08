@@ -37,7 +37,7 @@ const SliderDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SliderDemo(
     draggingRef.current = false;
   }
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => {
       setTarget((v) => {
@@ -45,7 +45,7 @@ const SliderDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SliderDemo(
         return next > 100 ? 0 : next;
       });
     },
-  });
+  }), [sliderOpts.increment]);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

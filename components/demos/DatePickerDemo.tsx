@@ -35,10 +35,10 @@ const DatePickerDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DatePic
     });
   }
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setOpen((v) => !v),
-  });
+  }), []);
 
   const triggerLabel = selected
     ? `${MONTH_NAMES[selected.month]} ${selected.day}, ${selected.year}`

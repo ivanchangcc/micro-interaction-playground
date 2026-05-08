@@ -1,4 +1,4 @@
-import { useImperativeHandle, type Ref } from 'react';
+import { useImperativeHandle, type DependencyList, type Ref } from 'react';
 
 export type SingleTrigger = {
   kind: 'single';
@@ -17,7 +17,8 @@ export type DemoTriggerHandle = SingleTrigger | DualTrigger;
 
 export function useDemoTrigger(
   ref: Ref<DemoTriggerHandle> | undefined,
-  handle: DemoTriggerHandle,
+  getHandle: () => DemoTriggerHandle,
+  deps: DependencyList,
 ): void {
-  useImperativeHandle(ref, () => handle, [handle]);
+  useImperativeHandle(ref, getHandle, deps);
 }

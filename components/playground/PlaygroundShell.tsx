@@ -76,7 +76,7 @@ export function PlaygroundShell() {
       <div className="hidden h-screen flex-col md:flex">
         <TopBar
           componentId={state.componentId}
-          onComponentChange={(id) => setState((s) => ({ ...s, componentId: id }))}
+          onComponentChange={(id) => setState((s) => ({ ...s, componentId: id, componentOptionsA: {}, componentOptionsB: undefined }))}
           sideBySide={state.sideBySide}
           onSideBySideChange={(next) =>
             setState((s) => ({ ...s, sideBySide: next, configB: s.configB ?? DEFAULT_TWEEN }))

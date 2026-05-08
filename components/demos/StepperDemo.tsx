@@ -14,10 +14,10 @@ const StepperDemo = forwardRef<DemoTriggerHandle, DemoProps>(function StepperDem
   const [step, setStep] = useState(0);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setStep((s) => (s + 1) % STEPS.length),
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">

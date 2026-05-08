@@ -1,0 +1,88 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]: Micro-interaction Playground
+      - combobox [ref=e5]:
+        - generic [ref=e6]: toggle
+        - img: ▼
+      - textbox [ref=e7]: toggle
+      - generic [ref=e8]:
+        - switch "Side-by-side" [checked] [active] [ref=e71]
+        - checkbox [checked] [ref=e10]
+        - generic [ref=e11]: Side-by-side
+      - button "Share" [ref=e12]:
+        - img
+        - text: Share
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e249]: A
+            - switch [ref=e250]
+          - generic [ref=e253]:
+            - generic [ref=e254]: B
+            - switch [ref=e256]
+        - generic [ref=e17]:
+          - button "Trigger both" [ref=e258]:
+            - img
+            - text: Trigger both
+          - button "Swap" [ref=e259]:
+            - img
+            - text: Swap
+      - complementary [ref=e19]:
+        - generic [ref=e260]:
+          - tablist [ref=e261]:
+            - tab "A" [selected] [ref=e262]
+            - tab "B" [ref=e263]
+          - tabpanel "A" [ref=e264]:
+            - generic [ref=e265]:
+              - generic [ref=e266]:
+                - heading "Preset" [level=3] [ref=e267]
+                - generic [ref=e268]:
+                  - combobox [ref=e269]:
+                    - generic [ref=e270]: material
+                    - img: ▼
+                  - textbox [ref=e271]: material
+              - generic [ref=e272]:
+                - heading "Animation" [level=3] [ref=e273]
+                - generic [ref=e274]:
+                  - generic [ref=e275]:
+                    - button "Tween" [ref=e276]
+                    - button "Spring" [ref=e277]
+                  - generic [ref=e278]:
+                    - generic [ref=e279]:
+                      - generic [ref=e280]:
+                        - generic [ref=e281]: Duration
+                        - generic [ref=e282]: 250ms
+                      - group [ref=e283]:
+                        - slider [ref=e288]: "250"
+                    - generic [ref=e289]:
+                      - generic [ref=e290]: Easing
+                      - combobox [ref=e291]:
+                        - generic [ref=e292]: custom
+                        - img: ▼
+                      - textbox [ref=e293]: custom
+                    - generic [ref=e294]:
+                      - generic [ref=e295]: Cubic-bezier
+                      - generic [ref=e296]:
+                        - img [ref=e297]
+                        - generic [ref=e300]:
+                          - spinbutton [ref=e301]: "0.4"
+                          - spinbutton [ref=e302]: "0"
+                          - spinbutton [ref=e303]: "0.2"
+                          - spinbutton [ref=e304]: "1"
+              - generic [ref=e305]:
+                - heading "Code" [level=3] [ref=e306]
+                - generic [ref=e307]:
+                  - tablist [ref=e308]:
+                    - tab "CSS" [selected] [ref=e309]
+                    - tab "Motion" [ref=e310]
+                  - tabpanel "CSS" [ref=e311]:
+                    - generic [ref=e312]:
+                      - code [ref=e314]: "transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);"
+                      - button [ref=e315]:
+                        - img
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e81] [cursor=pointer]:
+    - img [ref=e82]
+  - alert [ref=e85]

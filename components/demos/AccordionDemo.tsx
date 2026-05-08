@@ -17,10 +17,10 @@ const AccordionDemo = forwardRef<DemoTriggerHandle, DemoProps>(function Accordio
   const [open, setOpen] = useState<string[]>(['1']);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
-    trigger: () => setOpen((v) => v.length ? [] : ['item-1']),
-  });
+    trigger: () => setOpen((v) => v.length ? [] : ['1']),
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

@@ -17,10 +17,10 @@ const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownD
     ? { ...motionTransition, damping: ((motionTransition as { damping?: number }).damping ?? 20) * 0.6 }
     : motionTransition;
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setOpen((v) => !v),
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

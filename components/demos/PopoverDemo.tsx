@@ -31,10 +31,10 @@ const PopoverDemo = forwardRef<DemoTriggerHandle, DemoProps>(function PopoverDem
   const position = options?.popover?.position ?? 'bottom';
   const placement = POSITION_TO_PLACEMENT[position];
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => setOpen((v) => !v),
-  });
+  }), []);
 
   // Duration/easing for tween mode, expressed as CSS custom props
   const durationMs =

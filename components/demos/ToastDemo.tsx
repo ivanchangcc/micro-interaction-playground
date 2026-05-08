@@ -76,10 +76,10 @@ const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ 
     timerRef.current = setTimeout(() => setVisible(false), 2400);
   }
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: show,
-  });
+  }), [show]);
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[20px] border-2 bg-zinc-50">

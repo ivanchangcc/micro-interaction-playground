@@ -13,14 +13,14 @@ const InputFieldDemo = forwardRef<DemoTriggerHandle, DemoProps>(function InputFi
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
   const floated = focused || value.length > 0;
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => {
       inputRef.current?.focus();
       setTimeout(() => { setValue('Sample'); }, 200);
       setTimeout(() => { inputRef.current?.blur(); }, 1200);
     },
-  });
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">

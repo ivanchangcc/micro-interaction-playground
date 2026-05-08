@@ -11,35 +11,23 @@ const TextButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function TextBut
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
   const { hoverScale, pressScale } = options.textButton ?? DEFAULT_TEXT_BUTTON;
 
-  useDemoTrigger(ref, {
+  useDemoTrigger(ref, () => ({
     kind: 'single',
     trigger: () => {},
-  });
-
-  if (isSpring) {
-    return (
-      <div className="flex h-full w-full items-center justify-center">
-        <motion.button
-          whileHover={{ scale: hoverScale, backgroundColor: '#27272a' }}
-          whileTap={{ scale: pressScale }}
-          transition={motionTransition}
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
-        >
-          Click me
-        </motion.button>
-      </div>
-    );
-  }
+  }), []);
 
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <button
+      <motion.button
         type="button"
-        className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-muted hover:scale-105 active:scale-95"
-        style={{ transition: 'transform var(--duration) var(--easing), background-color var(--duration) var(--easing)', ...cssStyle }}
+        whileHover={{ scale: hoverScale, backgroundColor: '#27272a' }}
+        whileTap={{ scale: pressScale }}
+        transition={isSpring ? motionTransition : { duration: 0.15, ease: 'easeOut' }}
+        style={isSpring ? undefined : cssStyle}
+        className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
       >
         Click me
-      </button>
+      </motion.button>
     </div>
   );
 });
