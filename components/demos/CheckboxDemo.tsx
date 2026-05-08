@@ -11,6 +11,7 @@ export default function CheckboxDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
+    <div className="flex h-full w-full items-center justify-center">
     <button
       type="button"
       role="checkbox"
@@ -46,5 +47,6 @@ export default function CheckboxDemo({ config }: DemoProps) {
         </span>
       )}
     </button>
+    </div>
   );
 }

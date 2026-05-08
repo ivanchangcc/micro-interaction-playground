@@ -23,6 +23,7 @@ export default function PopoverDemo({ config }: DemoProps) {
       : 'ease';
 
   return (
+    <div className="flex h-full w-full items-center justify-center">
     <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
       <PopoverPrimitive.Trigger
         render={
@@ -60,5 +61,6 @@ export default function PopoverDemo({ config }: DemoProps) {
         </PopoverPrimitive.Positioner>
       </PopoverPrimitive.Portal>
     </PopoverPrimitive.Root>
+    </div>
   );
 }

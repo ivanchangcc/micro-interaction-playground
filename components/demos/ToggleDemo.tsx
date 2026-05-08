@@ -10,6 +10,7 @@ export default function ToggleDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
+    <div className="flex h-full w-full items-center justify-center">
     <button
       type="button"
       role="switch"
@@ -38,5 +39,6 @@ export default function ToggleDemo({ config }: DemoProps) {
         />
       )}
     </button>
+    </div>
   );
 }

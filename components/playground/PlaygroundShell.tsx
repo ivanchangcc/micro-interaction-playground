@@ -49,8 +49,8 @@ export function PlaygroundShell() {
         <div className="flex flex-1 overflow-hidden">
           <Canvas
             sideBySide={state.sideBySide}
-            paneA={<DemoFrame key={triggerKey}><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
-            paneB={<DemoFrame key={triggerKey}><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
+            paneA={<DemoFrame componentId={state.componentId} key={triggerKey}><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
+            paneB={<DemoFrame componentId={state.componentId} key={triggerKey}><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
             onReplay={() => setTriggerKey((k) => k + 1)}
             onSwap={swapConfigs}
           />

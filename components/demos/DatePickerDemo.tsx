@@ -39,7 +39,8 @@ export default function DatePickerDemo({ config }: DemoProps) {
     : 'Pick a date';
 
   return (
-    <div className="relative">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="relative">
       <Button variant="outline" onClick={() => setOpen((v) => !v)}>
         <Calendar className="mr-2 h-4 w-4" />
         {triggerLabel}
@@ -88,6 +89,7 @@ export default function DatePickerDemo({ config }: DemoProps) {
           />
         </div>
       )}
+      </div>
     </div>
   );
 }

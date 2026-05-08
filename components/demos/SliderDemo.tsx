@@ -10,7 +10,7 @@ export default function SliderDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-4">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <input
         type="range"
         min={0}

@@ -9,24 +9,28 @@ export default function TextButtonDemo({ config }: DemoProps) {
 
   if (isSpring) {
     return (
-      <motion.button
-        whileHover={{ scale: 1.05, backgroundColor: '#27272a' }}
-        whileTap={{ scale: 0.96 }}
-        transition={motionTransition}
-        className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
-      >
-        Click me
-      </motion.button>
+      <div className="flex h-full w-full items-center justify-center">
+        <motion.button
+          whileHover={{ scale: 1.05, backgroundColor: '#27272a' }}
+          whileTap={{ scale: 0.96 }}
+          transition={motionTransition}
+          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white"
+        >
+          Click me
+        </motion.button>
+      </div>
     );
   }
 
   return (
-    <button
-      type="button"
-      className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-muted hover:scale-105 active:scale-95"
-      style={{ transition: 'transform var(--duration) var(--easing), background-color var(--duration) var(--easing)', ...cssStyle }}
-    >
-      Click me
-    </button>
+    <div className="flex h-full w-full items-center justify-center">
+      <button
+        type="button"
+        className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-muted hover:scale-105 active:scale-95"
+        style={{ transition: 'transform var(--duration) var(--easing), background-color var(--duration) var(--easing)', ...cssStyle }}
+      >
+        Click me
+      </button>
+    </div>
   );
 }

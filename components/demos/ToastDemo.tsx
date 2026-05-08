@@ -18,7 +18,7 @@ export default function ToastDemo({ config, triggerKey }: DemoProps) {
   }
 
   return (
-    <div className="relative h-[880px] w-[390px] overflow-hidden rounded-[20px] border-2 bg-zinc-50">
+    <div className="relative h-full w-full overflow-hidden rounded-[20px] border-2 bg-zinc-50">
       <div className="absolute inset-x-0 top-0 h-7 bg-zinc-100 text-center text-[10px] leading-7 text-muted-foreground">
         Phone preview
       </div>

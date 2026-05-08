@@ -13,7 +13,8 @@ export default function DropdownDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="relative">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="relative">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -53,6 +54,7 @@ export default function DropdownDemo({ config }: DemoProps) {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

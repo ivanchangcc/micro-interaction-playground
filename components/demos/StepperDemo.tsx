@@ -14,7 +14,7 @@ export default function StepperDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="flex w-full max-w-sm flex-col items-center gap-4">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <div className="flex w-full items-center">
         {STEPS.map((label, i) => {
           const done = i < step;

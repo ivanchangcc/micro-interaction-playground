@@ -17,7 +17,8 @@ export default function AccordionDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="w-full max-w-md space-y-1">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="w-full space-y-1">
       {ITEMS.map((it) => {
         const isOpen = open.includes(it.id);
         return (
@@ -66,6 +67,7 @@ export default function AccordionDemo({ config }: DemoProps) {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

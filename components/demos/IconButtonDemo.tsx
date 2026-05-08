@@ -11,6 +11,7 @@ export default function IconButtonDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
+    <div className="flex h-full w-full items-center justify-center">
     <button
       type="button"
       onClick={() => setLiked((v) => !v)}
@@ -43,5 +44,6 @@ export default function IconButtonDemo({ config }: DemoProps) {
         </span>
       )}
     </button>
+    </div>
   );
 }

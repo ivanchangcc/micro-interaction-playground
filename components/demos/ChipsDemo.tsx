@@ -24,7 +24,7 @@ export default function ChipsDemo({ config }: DemoProps) {
   }
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-4">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <div className="flex flex-wrap gap-2">
         <AnimatePresence mode="popLayout">
           {chips.map((label) => (

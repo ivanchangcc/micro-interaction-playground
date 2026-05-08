@@ -19,7 +19,8 @@ export default function SideMenuDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="relative h-[300px] w-[420px] overflow-hidden rounded-lg border bg-white">
+    <div className="flex h-full w-full items-center justify-center">
+    <div className="relative h-full w-full overflow-hidden rounded-lg border bg-white">
       <div className="flex h-10 items-center gap-2 border-b bg-zinc-50 px-3">
         <Button size="sm" variant="ghost" onClick={() => setOpen(true)}>
           <Menu className="h-4 w-4" />
@@ -79,6 +80,7 @@ export default function SideMenuDemo({ config }: DemoProps) {
           </aside>
         </>
       )}
+    </div>
     </div>
   );
 }

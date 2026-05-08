@@ -13,7 +13,8 @@ export default function InputFieldDemo({ config }: DemoProps) {
   const floated = focused || value.length > 0;
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="w-full max-w-xs">
       <div className="relative">
         <input
           ref={ref}
@@ -51,6 +52,7 @@ export default function InputFieldDemo({ config }: DemoProps) {
             Email
           </label>
         )}
+      </div>
       </div>
     </div>
   );

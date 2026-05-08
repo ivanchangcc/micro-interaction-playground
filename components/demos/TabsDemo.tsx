@@ -19,7 +19,8 @@ export default function TabsDemo({ config }: DemoProps) {
   }, [active]);
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="w-full">
       <div className="relative flex border-b">
         {TABS.map((label, i) => (
           <button
@@ -51,6 +52,7 @@ export default function TabsDemo({ config }: DemoProps) {
         )}
       </div>
       <div className="p-4 text-sm">{TABS[active]} content goes here.</div>
+      </div>
     </div>
   );
 }
