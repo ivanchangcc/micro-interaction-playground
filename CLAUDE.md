@@ -173,3 +173,18 @@ Subagent-driven execution on branch `feat/playground-implementation`. Pausing at
 - Smoke tests import demos directly to bypass `next/dynamic` in jsdom
 - QA completed via code audit + curl + test suite (Playwright MCP was locked by another session)
 - All 41 tasks complete. Playground is feature-complete per spec.
+
+---
+
+### ✅ Phase 7 — Fixes & polish — COMPLETE
+
+Plan: `docs/superpowers/plans/2026-05-07-playground-v2-phase-7.md`
+Spec: `docs/superpowers/specs/2026-05-07-playground-v2-design.md`
+Branch: `feat/playground-v2-phase-7`
+
+All 22 tasks complete. 66/66 tests pass. Zero TypeScript errors.
+
+**Deviations:**
+- Task 18 (dropdown 4px gap) was already implemented in the shadcn select component defaults — no code change needed.
+- Popover PaneContext portal works but @base-ui/react/popover uses CSS transitions so spring config doesn't animate the popover open/close. Known limitation, deferred to Phase 8.
+- DemoFrame required an additional `h-full` class (discovered during Task 1 code review) to allow modal backdrop to fill the pane.

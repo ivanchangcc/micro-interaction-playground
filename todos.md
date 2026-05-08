@@ -152,3 +152,31 @@ Next up: Phase 6 (Tasks 39–41) — mobile notice, smoke tests, manual QA pass.
 ### Notes from this phase:
 No deviations from plan. Dev server confirmed working at localhost:3000 — canvas shows placeholder text, all controls (preset picker, animation sliders, code snippet) render and are interactive.
 Next up: Phase 5 (Tasks 22–38) — demo registry loader + all 17 component demos.
+
+## Phase 7 — Fixes & polish
+
+[x] Phase 7a — Task 1: Modal drop fake frame
+[x] Phase 7a — Task 2: Toast 390x880
+[x] Phase 7a — Task 3: Stepper sizing & alignment
+[x] Phase 7a — Task 4: Search input position lock
+[x] Phase 7a — Task 5: Toggle padding fix
+[x] Phase 7b — Task 6: Search placeholder + searchable list
+[x] Phase 7b — Task 7: Search clear icon centering
+[x] Phase 7b — Task 8: Input field label centering
+[x] Phase 7b — Task 9: Aligned focus states
+[x] Phase 7b — Task 10: Slider color
+[x] Phase 7c — Task 11: Accordion multi-open
+[x] Phase 7c — Task 12: Date picker rework (consolidated)
+[x] Phase 7c — Task 13: Dropdown 8 options
+[x] Phase 7c — Task 14: Chips tween fix
+[x] Phase 7c — Task 15: Popover portal via PaneContext
+[x] Phase 7d — Task 16: Hide Replay in single mode
+[x] Phase 7d — Task 17: ComponentPicker sentence-case label
+[x] Phase 7d — Task 18: Dropdown 4px gap below trigger (was already in place)
+[x] Phase 7d — Task 19: Copy icon background
+[x] Phase 7d — Task 20: Animation info tooltip
+[x] Phase 7e — Task 21: Heart fill animation
+[x] Phase 7e — Task 22: Text button hover bg
+
+### Known limitation
+- Popover in side-by-side: portal scoped to pane correctly, but @base-ui/react/popover uses CSS transitions (not Motion) so spring animation config has no visual effect on the popover open/close. To fix properly in Phase 8, migrate to a Motion-based popover or animate with CSS custom properties.
