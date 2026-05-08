@@ -7,11 +7,29 @@ import { useAnimationStyle } from '@/hooks/useAnimationStyle';
 import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { usePaneContainer } from '@/lib/pane-context';
 import type { DemoProps } from './index';
+import type { PopoverPosition } from '@/lib/component-options/types';
 
-const PopoverDemo = forwardRef<DemoTriggerHandle, DemoProps>(function PopoverDemo({ config }, ref) {
+const POSITION_TO_PLACEMENT: Record<
+  PopoverPosition,
+  { side: 'top' | 'bottom' | 'left' | 'right'; align: 'start' | 'center' | 'end' }
+> = {
+  'top-left':     { side: 'top',    align: 'start' },
+  'top':          { side: 'top',    align: 'center' },
+  'top-right':    { side: 'top',    align: 'end' },
+  'left':         { side: 'left',   align: 'center' },
+  'right':        { side: 'right',  align: 'center' },
+  'bottom-left':  { side: 'bottom', align: 'start' },
+  'bottom':       { side: 'bottom', align: 'center' },
+  'bottom-right': { side: 'bottom', align: 'end' },
+};
+
+const PopoverDemo = forwardRef<DemoTriggerHandle, DemoProps>(function PopoverDemo({ config, options }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, cssStyle } = useAnimationStyle(config);
   const paneContainer = usePaneContainer();
+
+  const position = options?.popover?.position ?? 'bottom';
+  const placement = POSITION_TO_PLACEMENT[position];
 
   useDemoTrigger(ref, {
     kind: 'single',
@@ -40,7 +58,8 @@ const PopoverDemo = forwardRef<DemoTriggerHandle, DemoProps>(function PopoverDem
       />
       <PopoverPrimitive.Portal container={paneContainer ?? undefined}>
         <PopoverPrimitive.Positioner
-          side="bottom"
+          side={placement.side}
+          align={placement.align}
           sideOffset={8}
           className="isolate z-50"
         >
@@ -54,7 +73,7 @@ const PopoverDemo = forwardRef<DemoTriggerHandle, DemoProps>(function PopoverDem
                     ...cssStyle,
                   } as React.CSSProperties)
             }
-            className="w-56 origin-top rounded-md border bg-white p-3 text-sm shadow-md
+            className="w-56 rounded-md border bg-white p-3 text-sm shadow-md
               data-[starting-style]:opacity-0 data-[starting-style]:scale-95
               data-[ending-style]:opacity-0 data-[ending-style]:scale-95
               transition-[opacity,transform] duration-[var(--duration,200ms)] ease-[var(--easing,ease)]"
