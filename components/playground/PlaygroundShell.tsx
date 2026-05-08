@@ -21,9 +21,10 @@ import { TextButtonOptionsPanel } from './options/TextButtonOptions';
 import { PopoverOptionsPanel } from './options/PopoverOptions';
 import { SliderOptionsPanel } from './options/SliderOptions';
 import { ToastOptionsPanel } from './options/ToastOptions';
+import { SideMenuOptionsPanel } from './options/SideMenuOptions';
 import type { AnimationConfig } from '@/lib/animation/types';
 import type { ComponentOptions } from '@/lib/component-options/types';
-import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON, DEFAULT_POPOVER, DEFAULT_SLIDER, DEFAULT_TOAST } from '@/lib/component-options/defaults';
+import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON, DEFAULT_POPOVER, DEFAULT_SLIDER, DEFAULT_TOAST, DEFAULT_SIDE_MENU } from '@/lib/component-options/defaults';
 import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
@@ -200,6 +201,15 @@ function PanelTabContents({
         <ToastOptionsPanel
           value={options.toast ?? DEFAULT_TOAST}
           onChange={(next) => onOptionsChange({ ...options, toast: next })}
+        />
+      );
+    }
+    if (optionsKey === 'sideMenu') {
+      return (
+        <SideMenuOptionsPanel
+          value={options.sideMenu ?? DEFAULT_SIDE_MENU}
+          onChange={(next) => onOptionsChange({ ...options, sideMenu: next })}
+          config={config}
         />
       );
     }
