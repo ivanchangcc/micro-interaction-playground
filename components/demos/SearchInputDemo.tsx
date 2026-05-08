@@ -14,7 +14,7 @@ export default function SearchInputDemo({ config }: DemoProps) {
   const filtered = q ? DATA.filter((d) => d.toLowerCase().includes(q.toLowerCase())) : [];
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="relative w-full max-w-xs">
       <div className="relative">
         <Search className="pointer-events-none absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
@@ -58,7 +58,7 @@ export default function SearchInputDemo({ config }: DemoProps) {
       </div>
       {filtered.length > 0 && (
         <div
-          className="mt-1 overflow-hidden rounded border bg-white shadow-sm"
+          className="absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded border bg-white shadow-sm"
           style={{
             transition: isSpring ? undefined : 'all var(--duration) var(--easing)',
             ...(!isSpring ? cssStyle : {}),
