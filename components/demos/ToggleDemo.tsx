@@ -24,14 +24,14 @@ export default function ToggleDemo({ config }: DemoProps) {
       {isSpring ? (
         <motion.span
           className="absolute top-1 block h-6 w-6 rounded-full bg-white shadow"
-          animate={{ x: on ? 24 : 4 }}
+          animate={{ x: on ? 28 : 4 }}
           transition={motionTransition}
         />
       ) : (
         <span
           className="absolute top-1 block h-6 w-6 rounded-full bg-white shadow"
           style={{
-            transform: `translateX(${on ? 24 : 4}px)`,
+            transform: `translateX(${on ? 28 : 4}px)`,
             transition: 'transform var(--duration) var(--easing)',
             ...cssStyle,
           }}
