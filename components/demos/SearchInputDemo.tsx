@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, X } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { COMPONENT_IDS, getComponentLabel } from '@/components/demos/registry';
 import type { DemoProps } from './index';
 
-const DATA = ['Modal', 'Toast', 'Toggle', 'Tabs', 'Dropdown', 'Slider'];
+const DATA = COMPONENT_IDS.map((id) => getComponentLabel(id));
 
 export default function SearchInputDemo({ config }: DemoProps) {
   const [q, setQ] = useState('');
@@ -20,8 +21,8 @@ export default function SearchInputDemo({ config }: DemoProps) {
         <input
           value={q}
           onChange={(e) => setQ(e.currentTarget.value)}
-          placeholder="Search…"
-          className="w-full rounded border bg-white py-2 pl-8 pr-8 text-sm"
+          placeholder="Search a component"
+          className="w-full rounded border bg-white py-2 pl-8 pr-8 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {isSpring ? (
           <AnimatePresence>
@@ -33,7 +34,8 @@ export default function SearchInputDemo({ config }: DemoProps) {
                 exit={{ opacity: 0, scale: 0.6 }}
                 transition={motionTransition}
                 onClick={() => setQ('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2"
+                aria-label="Clear"
+                className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center"
               >
                 <X className="h-4 w-4" />
               </motion.button>
@@ -43,7 +45,8 @@ export default function SearchInputDemo({ config }: DemoProps) {
           <button
             onClick={() => setQ('')}
             aria-hidden={!q}
-            className="absolute right-2 top-1/2 -translate-y-1/2"
+            aria-label="Clear"
+            className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center"
             style={{
               opacity: q ? 1 : 0,
               transform: `translateY(-50%) scale(${q ? 1 : 0.6})`,
