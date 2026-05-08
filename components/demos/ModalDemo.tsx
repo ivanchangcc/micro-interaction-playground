@@ -11,11 +11,8 @@ export default function ModalDemo({ config }: DemoProps) {
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
   return (
-    <div className="relative h-[280px] w-[420px] overflow-hidden rounded-lg border bg-white">
-      <div className="flex h-10 items-center border-b bg-zinc-50 px-3 text-xs text-muted-foreground">Demo app</div>
-      <div className="flex h-full items-center justify-center">
-        <Button onClick={() => setOpen(true)}>Open modal</Button>
-      </div>
+    <div className="relative flex h-full w-full items-center justify-center">
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
       {isSpring ? (
         <AnimatePresence>
           {open && (
