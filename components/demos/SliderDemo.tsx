@@ -1,13 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function SliderDemo({ config }: DemoProps) {
+const SliderDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SliderDemo({ config }, ref) {
   const [target, setTarget] = useState(40);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => {},
+  });
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">
@@ -40,4 +46,6 @@ export default function SliderDemo({ config }: DemoProps) {
       <p className="text-xs text-muted-foreground">Drag the input above; the visual thumb catches up using the configured animation.</p>
     </div>
   );
-}
+});
+
+export default SliderDemo;

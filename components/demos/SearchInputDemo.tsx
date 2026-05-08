@@ -1,18 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, X } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { COMPONENT_IDS, getComponentLabel } from '@/components/demos/registry';
 import type { DemoProps } from './index';
 
 const DATA = COMPONENT_IDS.map((id) => getComponentLabel(id));
 
-export default function SearchInputDemo({ config }: DemoProps) {
+const SearchInputDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SearchInputDemo({ config }, ref) {
   const [q, setQ] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
   const filtered = q ? DATA.filter((d) => d.toLowerCase().includes(q.toLowerCase())) : [];
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => {
+      const input = searchInputRef.current;
+      if (!input) return;
+      input.focus();
+      setTimeout(() => { setQ('but'); }, 200);
+      setTimeout(() => { setQ(''); input.blur(); }, 800);
+    },
+  });
 
   return (
     <div className="flex h-full w-full items-start justify-center pt-8">
@@ -20,6 +33,7 @@ export default function SearchInputDemo({ config }: DemoProps) {
       <div className="relative">
         <Search className="pointer-events-none absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
+          ref={searchInputRef}
           value={q}
           onChange={(e) => setQ(e.currentTarget.value)}
           placeholder="Search a component"
@@ -76,4 +90,6 @@ export default function SearchInputDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default SearchInputDemo;
