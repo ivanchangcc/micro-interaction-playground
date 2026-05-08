@@ -91,3 +91,23 @@ export const LOGICAL_SIZES: Record<ComponentId, LogicalSize> = {
 export function getLogicalSize(id: ComponentId): LogicalSize {
   return LOGICAL_SIZES[id];
 }
+
+export const TRIGGER_SHAPES: Record<ComponentId, 'single' | 'dual'> = {
+  'chips':        'dual',
+  'icon-button':  'single',
+  'text-button':  'single',
+  'toggle':       'single',
+  'checkbox':     'single',
+  'accordion':    'single',
+  'tabs':         'single',
+  'stepper':      'single',
+  'slider':       'single',
+  'input-field':  'single',
+  'search-input': 'single',
+  'dropdown':     'single',
+  'popover':      'single',
+  'modal':        'single',
+  'date-picker':  'single',
+  'toast':        'single',
+  'side-menu':    'single',
+};

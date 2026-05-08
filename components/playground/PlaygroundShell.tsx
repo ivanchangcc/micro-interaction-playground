@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Info } from 'lucide-react';
 import { TopBar } from './TopBar';
 import { Canvas } from './Canvas';
@@ -14,12 +14,15 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useUrlState } from '@/hooks/useUrlState';
 import { DemoFrame } from '@/components/demos/DemoFrame';
 import { DEMOS } from '@/components/demos';
+import { TRIGGER_SHAPES } from '@/components/demos/registry';
 import type { AnimationConfig } from '@/lib/animation/types';
+import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
 export function PlaygroundShell() {
   const { state, setState } = useUrlState();
-  const [triggerKey, setTriggerKey] = useState(0);
+  const refA = useRef<DemoTriggerHandle>(null);
+  const refB = useRef<DemoTriggerHandle>(null);
 
   function setConfigA(next: AnimationConfig) {
     setState((s) => ({ ...s, configA: next }));
@@ -33,6 +36,30 @@ export function PlaygroundShell() {
 
   const configB = state.configB ?? DEFAULT_TWEEN;
   const Demo = DEMOS[state.componentId];
+
+  const triggerShape = TRIGGER_SHAPES[state.componentId];
+  const footerTrigger = triggerShape === 'single'
+    ? {
+        kind: 'single' as const,
+        label: 'Trigger both',
+        onTrigger: () => {
+          if (refA.current?.kind === 'single') refA.current.trigger();
+          if (refB.current?.kind === 'single') refB.current.trigger();
+        },
+      }
+    : {
+        kind: 'dual' as const,
+        primaryLabel: 'Add chip',
+        secondaryLabel: 'Remove chip',
+        onPrimary: () => {
+          if (refA.current?.kind === 'dual') refA.current.primary();
+          if (refB.current?.kind === 'dual') refB.current.primary();
+        },
+        onSecondary: () => {
+          if (refA.current?.kind === 'dual') refA.current.secondary();
+          if (refB.current?.kind === 'dual') refB.current.secondary();
+        },
+      };
 
   return (
     <>
@@ -49,9 +76,17 @@ export function PlaygroundShell() {
         <div className="flex flex-1 overflow-hidden">
           <Canvas
             sideBySide={state.sideBySide}
-            paneA={<DemoFrame componentId={state.componentId} key={triggerKey}><Demo config={state.configA} options={state.componentOptionsA} triggerKey={triggerKey} /></DemoFrame>}
-            paneB={<DemoFrame componentId={state.componentId} key={triggerKey}><Demo config={configB} options={state.componentOptionsB ?? {}} triggerKey={triggerKey} /></DemoFrame>}
-            onReplay={() => setTriggerKey((k) => k + 1)}
+            paneA={
+              <DemoFrame componentId={state.componentId}>
+                <Demo ref={refA} config={state.configA} options={state.componentOptionsA} triggerKey={0} />
+              </DemoFrame>
+            }
+            paneB={
+              <DemoFrame componentId={state.componentId}>
+                <Demo ref={refB} config={configB} options={state.componentOptionsB ?? {}} triggerKey={0} />
+              </DemoFrame>
+            }
+            footerTrigger={state.sideBySide ? footerTrigger : undefined}
             onSwap={swapConfigs}
           />
           <ConfigPanel>
