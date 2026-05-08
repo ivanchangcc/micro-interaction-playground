@@ -20,7 +20,7 @@ const IconButtonDemo = forwardRef<DemoTriggerHandle, DemoProps>(function IconBut
 
   const hoverTapTransition = isSpring
     ? motionTransition
-    : { duration: 0.12, ease: 'easeOut' };
+    : { duration: 0.12, ease: 'easeOut' as const };
 
   return (
     <div className="flex h-full w-full items-center justify-center">

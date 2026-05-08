@@ -102,7 +102,7 @@ const SideMenuDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SideMenuD
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={transition}
-              className="absolute inset-0 bg-black/40"
+              className="absolute inset-0 z-10 bg-black/40"
               onClick={() => setOpen(false)}
             />
             <motion.aside
@@ -119,7 +119,7 @@ const SideMenuDemo = forwardRef<DemoTriggerHandle, DemoProps>(function SideMenuD
                 position: 'absolute',
                 width: MENU_WIDTH,
               }}
-              className="flex flex-col gap-1 bg-white p-3 shadow-xl z-10"
+              className="flex flex-col gap-1 bg-white p-3 shadow-xl z-20"
             >
               <div className="mb-2 flex items-center justify-between">
                 <span className="text-sm font-semibold">Menu</span>
