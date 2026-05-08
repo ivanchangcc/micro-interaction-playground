@@ -65,3 +65,29 @@ export const OPTIONS_KEYS: Partial<Record<ComponentId, ComponentOptionsKey>> = {
 export function getOptionsKey(id: ComponentId): ComponentOptionsKey | undefined {
   return OPTIONS_KEYS[id];
 }
+
+export type LogicalSize = { width: number; height: number };
+
+export const LOGICAL_SIZES: Record<ComponentId, LogicalSize> = {
+  'icon-button':  { width: 200, height: 200 },
+  'text-button':  { width: 240, height: 80 },
+  'toggle':       { width: 200, height: 80 },
+  'checkbox':     { width: 200, height: 80 },
+  'accordion':    { width: 360, height: 320 },
+  'tabs':         { width: 360, height: 200 },
+  'stepper':      { width: 480, height: 160 },
+  'slider':       { width: 360, height: 120 },
+  'input-field':  { width: 320, height: 120 },
+  'search-input': { width: 320, height: 280 },
+  'dropdown':     { width: 240, height: 360 },
+  'popover':      { width: 320, height: 280 },
+  'modal':        { width: 480, height: 360 },
+  'date-picker':  { width: 320, height: 380 },
+  'toast':        { width: 390, height: 880 },
+  'side-menu':    { width: 360, height: 480 },
+  'chips':        { width: 360, height: 160 },
+};
+
+export function getLogicalSize(id: ComponentId): LogicalSize {
+  return LOGICAL_SIZES[id];
+}
