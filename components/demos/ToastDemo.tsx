@@ -6,12 +6,68 @@ import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
 import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
+import type { ToastDirection } from '@/lib/component-options/types';
 
-const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ config }, ref) {
+// Map our direction to CSS positioning and enter/exit offset
+type PositionStyle = {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  transform?: string;
+};
+
+function getPositionStyle(direction: ToastDirection): PositionStyle {
+  switch (direction) {
+    case 'top-left':     return { top: '40px', left: '12px' };
+    case 'top':          return { top: '40px', left: '50%', transform: 'translateX(-50%)' };
+    case 'top-right':    return { top: '40px', right: '12px' };
+    case 'bottom-left':  return { bottom: '12px', left: '12px' };
+    case 'bottom':       return { bottom: '12px', left: '50%', transform: 'translateX(-50%)' };
+    case 'bottom-right': return { bottom: '12px', right: '12px' };
+  }
+}
+
+function getMotionOffset(direction: ToastDirection): { x?: number; y?: number } {
+  switch (direction) {
+    case 'top-left':     return { x: -120 };
+    case 'top':          return { y: -40 };
+    case 'top-right':    return { x: 120 };
+    case 'bottom-left':  return { x: -120 };
+    case 'bottom':       return { y: 40 };
+    case 'bottom-right': return { x: 120 };
+  }
+}
+
+function getCssOffset(direction: ToastDirection): { transform: string } {
+  switch (direction) {
+    case 'top-left':     return { transform: 'translateX(-120px)' };
+    case 'top':          return { transform: 'translateX(-50%) translateY(-40px)' };
+    case 'top-right':    return { transform: 'translateX(120px)' };
+    case 'bottom-left':  return { transform: 'translateX(-120px)' };
+    case 'bottom':       return { transform: 'translateX(-50%) translateY(40px)' };
+    case 'bottom-right': return { transform: 'translateX(120px)' };
+  }
+}
+
+function getCssVisible(direction: ToastDirection): { transform: string } {
+  if (direction === 'top' || direction === 'bottom') {
+    return { transform: 'translateX(-50%)' };
+  }
+  return { transform: 'translateX(0px)' };
+}
+
+const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ config, options }, ref) {
   const [visible, setVisible] = useState(false);
   const [toastKey, setToastKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  const direction: ToastDirection = options.toast?.direction ?? 'bottom-right';
+  const positionStyle = getPositionStyle(direction);
+  const motionOffset = getMotionOffset(direction);
+  const cssOffset = getCssOffset(direction);
+  const cssVisible = getCssVisible(direction);
 
   function show() {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -38,11 +94,12 @@ const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ 
           {visible && (
             <motion.div
               key={toastKey}
-              initial={{ opacity: 0, x: 200 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 200 }}
+              initial={{ opacity: 0, ...motionOffset }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, ...motionOffset }}
               transition={motionTransition}
-              className="absolute right-3 top-10 w-[200px] rounded-md bg-zinc-900 px-3 py-2 text-xs text-white shadow-lg"
+              style={positionStyle}
+              className="absolute w-[200px] rounded-md bg-zinc-900 px-3 py-2 text-xs text-white shadow-lg"
             >
               Saved successfully.
             </motion.div>
@@ -51,10 +108,11 @@ const ToastDemo = forwardRef<DemoTriggerHandle, DemoProps>(function ToastDemo({ 
       ) : (
         <div
           key={toastKey}
-          className="absolute right-3 top-10 w-[200px] rounded-md bg-zinc-900 px-3 py-2 text-xs text-white shadow-lg"
+          className="absolute w-[200px] rounded-md bg-zinc-900 px-3 py-2 text-xs text-white shadow-lg"
           style={{
+            ...positionStyle,
             opacity: visible ? 1 : 0,
-            transform: `translateX(${visible ? 0 : 200}px)`,
+            transform: visible ? cssVisible.transform : cssOffset.transform,
             transition: 'opacity var(--duration) var(--easing), transform var(--duration) var(--easing)',
             ...cssStyle,
           }}

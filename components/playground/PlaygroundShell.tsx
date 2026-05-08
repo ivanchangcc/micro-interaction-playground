@@ -18,9 +18,12 @@ import { TRIGGER_SHAPES, getOptionsKey } from '@/components/demos/registry';
 import { DropdownOptionsPanel } from './options/DropdownOptions';
 import { IconButtonOptionsPanel } from './options/IconButtonOptions';
 import { TextButtonOptionsPanel } from './options/TextButtonOptions';
+import { PopoverOptionsPanel } from './options/PopoverOptions';
+import { SliderOptionsPanel } from './options/SliderOptions';
+import { ToastOptionsPanel } from './options/ToastOptions';
 import type { AnimationConfig } from '@/lib/animation/types';
 import type { ComponentOptions } from '@/lib/component-options/types';
-import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON } from '@/lib/component-options/defaults';
+import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON, DEFAULT_POPOVER, DEFAULT_SLIDER, DEFAULT_TOAST } from '@/lib/component-options/defaults';
 import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
@@ -173,6 +176,30 @@ function PanelTabContents({
         <TextButtonOptionsPanel
           value={options.textButton ?? DEFAULT_TEXT_BUTTON}
           onChange={(next) => onOptionsChange({ ...options, textButton: next })}
+        />
+      );
+    }
+    if (optionsKey === 'popover') {
+      return (
+        <PopoverOptionsPanel
+          value={options.popover ?? DEFAULT_POPOVER}
+          onChange={(next) => onOptionsChange({ ...options, popover: next })}
+        />
+      );
+    }
+    if (optionsKey === 'slider') {
+      return (
+        <SliderOptionsPanel
+          value={options.slider ?? DEFAULT_SLIDER}
+          onChange={(next) => onOptionsChange({ ...options, slider: next })}
+        />
+      );
+    }
+    if (optionsKey === 'toast') {
+      return (
+        <ToastOptionsPanel
+          value={options.toast ?? DEFAULT_TOAST}
+          onChange={(next) => onOptionsChange({ ...options, toast: next })}
         />
       );
     }
