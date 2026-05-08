@@ -188,3 +188,27 @@ All 22 tasks complete. 66/66 tests pass. Zero TypeScript errors.
 - Task 18 (dropdown 4px gap) was already implemented in the shadcn select component defaults — no code change needed.
 - Popover PaneContext portal works but @base-ui/react/popover uses CSS transitions so spring config doesn't animate the popover open/close. Known limitation, deferred to Phase 8.
 - DemoFrame required an additional `h-full` class (discovered during Task 1 code review) to allow modal backdrop to fill the pane.
+
+---
+
+### 🚧 Phase 8 — Architecture & new options — COMPLETE
+
+Plan: `docs/superpowers/plans/2026-05-07-playground-v2-phase-8.md`
+Spec: `docs/superpowers/specs/2026-05-07-playground-v2-design.md`
+Branch: `feat/playground-v2-phase-8`
+
+All 17 implementation tasks complete. 102/102 tests pass. Zero TypeScript errors.
+
+**What was built:**
+- `lib/component-options/` — types, defaults, URL encode/decode for per-component options (popover position, toast direction, side menu kind/bounce/layered/side, dropdown bounce, icon/text button hover/press scale, slider increment + drag spring)
+- `PlaygroundState` extended with `componentOptionsA`/`componentOptionsB`, round-tripped through URL
+- `PaneScaler` — ResizeObserver-based scale-to-fit; logical sizes per component; DemoFrame wired
+- `useDemoTrigger` hook + forwardRef pattern — all 17 demos converted; triggerKey plumbing removed
+- Canvas `footerTrigger` system (single/dual); TRIGGER_SHAPES registry
+- Component options panels in `components/playground/options/` for dropdown, icon-button, text-button, slider, popover, toast, side-menu
+- SliderDemo fully rewritten (single thumb, drag spring, snap-to-increment)
+- SideMenuDemo fully rewritten (slide/dissolve/scale/push, bounce, layered, left/right)
+
+**Deviations:**
+- ToastDemo direction: implemented as CSS positioning (top/bottom/left/right) + directional Motion enter/exit rather than Sonner's `position` prop (Sonner was used for the global toast; the phone-frame toast uses custom positioning for layout control)
+- TooltipTrigger `asChild` not available in this shadcn build; disabled Switch sits directly inside TooltipTrigger (matches existing pattern from Task 13)

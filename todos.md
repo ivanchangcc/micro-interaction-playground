@@ -180,3 +180,23 @@ Next up: Phase 5 (Tasks 22–38) — demo registry loader + all 17 component dem
 
 ### Known limitation
 - Popover in side-by-side: portal scoped to pane correctly, but @base-ui/react/popover uses CSS transitions (not Motion) so spring animation config has no visual effect on the popover open/close. To fix properly in Phase 8, migrate to a Motion-based popover or animate with CSS custom properties.
+
+## Phase 8 — Architecture & new options
+
+[x] Phase 8a-i — Task 1: ComponentOptions types
+[x] Phase 8a-i — Task 2: Component option defaults
+[x] Phase 8a-i — Task 3: URL encoder
+[x] Phase 8a-i — Task 4: URL decoder
+[x] Phase 8a-i — Task 5: Wire componentOptions into state
+[x] Phase 8a-ii — Task 6: Logical sizes in registry
+[x] Phase 8a-ii — Task 7: PaneScaler component
+[x] Phase 8a-ii — Task 8: Wire PaneScaler through DemoFrame
+[x] Phase 8a-iii — Task 9: useDemoTrigger hook
+[x] Phase 8a-iii — Task 10: DemoProps with refs
+[x] Phase 8a-iii — Task 11: Toggle proof-of-concept
+[x] Phase 8b — Task 12: Roll out canonical triggers across 16 demos
+[x] Phase 8c — Task 13: Dropdown bounce + button hover & press scale
+[x] Phase 8d — Task 14: Slider full rework
+[x] Phase 8e — Task 15: Popover position
+[x] Phase 8f — Task 16: Toast direction
+[x] Phase 8g — Task 17: Side menu options
