@@ -16,7 +16,7 @@ export default function DropdownDemo({ config }: DemoProps) {
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 rounded border bg-white px-3 py-1.5 text-sm"
+        className="flex items-center gap-2 rounded border bg-white px-3 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         Account <ChevronDown className="h-3.5 w-3.5" />
       </button>
