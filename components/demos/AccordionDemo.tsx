@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const ITEMS = [
@@ -12,9 +13,14 @@ const ITEMS = [
   { id: '3', title: 'When do they go wrong?', body: 'When they are too long, too linear, or block input.' },
 ];
 
-export default function AccordionDemo({ config }: DemoProps) {
+const AccordionDemo = forwardRef<DemoTriggerHandle, DemoProps>(function AccordionDemo({ config }, ref) {
   const [open, setOpen] = useState<string[]>(['1']);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setOpen((v) => v.length ? [] : ['item-1']),
+  });
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -70,4 +76,6 @@ export default function AccordionDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default AccordionDemo;

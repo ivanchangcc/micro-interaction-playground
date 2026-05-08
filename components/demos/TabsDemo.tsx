@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, useRef, useLayoutEffect } from 'react';
+import { forwardRef, useState, useRef, useLayoutEffect } from 'react';
 import { motion } from 'motion/react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const TABS = ['Overview', 'Settings', 'Activity'];
 
-export default function TabsDemo({ config }: DemoProps) {
+const TabsDemo = forwardRef<DemoTriggerHandle, DemoProps>(function TabsDemo({ config }, ref) {
   const [active, setActive] = useState(0);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -17,6 +18,11 @@ export default function TabsDemo({ config }: DemoProps) {
     const el = refs.current[active];
     if (el) setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
   }, [active]);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setActive((v) => (v + 1) % TABS.length),
+  });
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -55,4 +61,6 @@ export default function TabsDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default TabsDemo;

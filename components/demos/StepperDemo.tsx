@@ -1,17 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const STEPS = ['Account', 'Profile', 'Done'];
 
-export default function StepperDemo({ config }: DemoProps) {
+const StepperDemo = forwardRef<DemoTriggerHandle, DemoProps>(function StepperDemo({ config }, ref) {
   const [step, setStep] = useState(0);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+
+  useDemoTrigger(ref, {
+    kind: 'single',
+    trigger: () => setStep((s) => (s + 1) % STEPS.length),
+  });
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">
@@ -50,4 +56,6 @@ export default function StepperDemo({ config }: DemoProps) {
       </div>
     </div>
   );
-}
+});
+
+export default StepperDemo;
