@@ -14,8 +14,13 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useUrlState } from '@/hooks/useUrlState';
 import { DemoFrame } from '@/components/demos/DemoFrame';
 import { DEMOS } from '@/components/demos';
-import { TRIGGER_SHAPES } from '@/components/demos/registry';
+import { TRIGGER_SHAPES, getOptionsKey } from '@/components/demos/registry';
+import { DropdownOptionsPanel } from './options/DropdownOptions';
+import { IconButtonOptionsPanel } from './options/IconButtonOptions';
+import { TextButtonOptionsPanel } from './options/TextButtonOptions';
 import type { AnimationConfig } from '@/lib/animation/types';
+import type { ComponentOptions } from '@/lib/component-options/types';
+import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON } from '@/lib/component-options/defaults';
 import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
@@ -101,6 +106,8 @@ export function PlaygroundShell() {
                     componentId={state.componentId}
                     config={state.configA}
                     onChange={setConfigA}
+                    options={state.componentOptionsA}
+                    onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsA: next }))}
                   />
                 </TabsContent>
                 <TabsContent value="b" className="mt-4">
@@ -108,6 +115,8 @@ export function PlaygroundShell() {
                     componentId={state.componentId}
                     config={configB}
                     onChange={setConfigB}
+                    options={state.componentOptionsB ?? {}}
+                    onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsB: next }))}
                   />
                 </TabsContent>
               </Tabs>
@@ -116,6 +125,8 @@ export function PlaygroundShell() {
                 componentId={state.componentId}
                 config={state.configA}
                 onChange={setConfigA}
+                options={state.componentOptionsA}
+                onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsA: next }))}
               />
             )}
           </ConfigPanel>
@@ -129,11 +140,45 @@ function PanelTabContents({
   componentId,
   config,
   onChange,
+  options,
+  onOptionsChange,
 }: {
   componentId: import('@/components/demos/registry').ComponentId;
   config: AnimationConfig;
   onChange: (next: AnimationConfig) => void;
+  options: Partial<ComponentOptions>;
+  onOptionsChange: (next: Partial<ComponentOptions>) => void;
 }) {
+  const optionsKey = getOptionsKey(componentId);
+  const optionsPanel = (() => {
+    if (optionsKey === 'dropdown') {
+      return (
+        <DropdownOptionsPanel
+          value={options.dropdown ?? DEFAULT_DROPDOWN}
+          onChange={(next) => onOptionsChange({ ...options, dropdown: next })}
+          config={config}
+        />
+      );
+    }
+    if (optionsKey === 'iconButton') {
+      return (
+        <IconButtonOptionsPanel
+          value={options.iconButton ?? DEFAULT_ICON_BUTTON}
+          onChange={(next) => onOptionsChange({ ...options, iconButton: next })}
+        />
+      );
+    }
+    if (optionsKey === 'textButton') {
+      return (
+        <TextButtonOptionsPanel
+          value={options.textButton ?? DEFAULT_TEXT_BUTTON}
+          onChange={(next) => onOptionsChange({ ...options, textButton: next })}
+        />
+      );
+    }
+    return null;
+  })();
+
   return (
     <div className="flex flex-col gap-6">
       <PanelSection title="Preset">
@@ -163,6 +208,9 @@ function PanelTabContents({
       >
         <AnimationControls config={config} onChange={onChange} />
       </PanelSection>
+      {optionsPanel && (
+        <PanelSection title="Component options">{optionsPanel}</PanelSection>
+      )}
       <PanelSection title="Code">
         <CodeSnippet config={config} />
       </PanelSection>

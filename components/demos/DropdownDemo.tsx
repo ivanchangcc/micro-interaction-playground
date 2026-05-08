@@ -9,9 +9,13 @@ import type { DemoProps } from './index';
 
 const ITEMS = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Honeydew'];
 
-const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownDemo({ config }, ref) {
+const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownDemo({ config, options }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+  const bounce = options.dropdown?.bounce && config.type === 'spring';
+  const transition = bounce
+    ? { ...motionTransition, damping: ((motionTransition as { damping?: number }).damping ?? 20) * 0.6 }
+    : motionTransition;
 
   useDemoTrigger(ref, {
     kind: 'single',
@@ -35,7 +39,7 @@ const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownD
               initial={{ opacity: 0, y: -4, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -4, scale: 0.96 }}
-              transition={motionTransition}
+              transition={transition}
               className="absolute left-0 top-full mt-1 w-40 origin-top rounded border bg-white shadow max-h-[280px] overflow-y-auto"
             >
               {ITEMS.map((it) => (
