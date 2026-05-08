@@ -2,15 +2,21 @@ import type { AnimationConfig, EasingValue } from './animation/types';
 import {
   DEFAULT_COMPONENT_ID,
   isComponentId,
+  getOptionsKey,
   type ComponentId,
 } from '@/components/demos/registry';
 import { DEFAULT_TWEEN, DEFAULT_SPRING } from './animation/defaults';
 import { SLIDER_LIMITS } from './animation/types';
+import type { ComponentOptions } from './component-options/types';
+import { encodeComponentOptions } from './component-options/encode';
+import { decodeComponentOptions } from './component-options/decode';
 
 export type PlaygroundState = {
   componentId: ComponentId;
   configA: AnimationConfig;
   configB?: AnimationConfig;
+  componentOptionsA: Partial<ComponentOptions>;
+  componentOptionsB?: Partial<ComponentOptions>;
   sideBySide: boolean;
 };
 
@@ -44,9 +50,16 @@ export function serializeState(state: PlaygroundState): URLSearchParams {
   const params = new URLSearchParams();
   params.set('c', state.componentId);
   encodeConfig(params, '', state.configA);
+  const optionsKey = getOptionsKey(state.componentId);
+  if (optionsKey && state.componentOptionsA) {
+    encodeComponentOptions(params, '', state.componentOptionsA);
+  }
   if (state.sideBySide && state.configB) {
     params.set('sbs', '1');
     encodeConfig(params, 'b.', state.configB);
+    if (optionsKey && state.componentOptionsB) {
+      encodeComponentOptions(params, 'b.', state.componentOptionsB);
+    }
   }
   return params;
 }
@@ -107,5 +120,14 @@ export function parseState(input: string | URLSearchParams): PlaygroundState {
   const configA = parseConfigAt(params, '', DEFAULT_TWEEN);
   const sideBySide = params.get('sbs') === '1';
   const configB = sideBySide ? parseConfigAt(params, 'b.', DEFAULT_SPRING) : undefined;
-  return { componentId, configA, configB, sideBySide };
+
+  const optionsKey = getOptionsKey(componentId);
+  const componentOptionsA = optionsKey
+    ? decodeComponentOptions(params, '', optionsKey)
+    : {};
+  const componentOptionsB = sideBySide && optionsKey
+    ? decodeComponentOptions(params, 'b.', optionsKey)
+    : undefined;
+
+  return { componentId, configA, configB, componentOptionsA, componentOptionsB, sideBySide };
 }

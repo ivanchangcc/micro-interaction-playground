@@ -49,3 +49,19 @@ export function getComponentLabel(id: ComponentId | string): string {
 }
 
 export const DEFAULT_COMPONENT_ID: ComponentId = 'toggle';
+
+import type { ComponentOptionsKey } from '@/lib/component-options/types';
+
+export const OPTIONS_KEYS: Partial<Record<ComponentId, ComponentOptionsKey>> = {
+  'popover': 'popover',
+  'toast': 'toast',
+  'side-menu': 'sideMenu',
+  'dropdown': 'dropdown',
+  'icon-button': 'iconButton',
+  'text-button': 'textButton',
+  'slider': 'slider',
+};
+
+export function getOptionsKey(id: ComponentId): ComponentOptionsKey | undefined {
+  return OPTIONS_KEYS[id];
+}
