@@ -78,12 +78,12 @@ export function PlaygroundShell() {
             sideBySide={state.sideBySide}
             paneA={
               <DemoFrame componentId={state.componentId}>
-                <Demo ref={refA} config={state.configA} options={state.componentOptionsA} triggerKey={0} />
+                <Demo ref={refA} config={state.configA} options={state.componentOptionsA} />
               </DemoFrame>
             }
             paneB={
               <DemoFrame componentId={state.componentId}>
-                <Demo ref={refB} config={configB} options={state.componentOptionsB ?? {}} triggerKey={0} />
+                <Demo ref={refB} config={configB} options={state.componentOptionsB ?? {}} />
               </DemoFrame>
             }
             footerTrigger={state.sideBySide ? footerTrigger : undefined}

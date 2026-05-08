@@ -10,7 +10,6 @@ import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 export type DemoProps = {
   config: AnimationConfig;
   options: Partial<ComponentOptions>;
-  triggerKey: number;
 };
 
 export type DemoComponent = ForwardRefExoticComponent<
