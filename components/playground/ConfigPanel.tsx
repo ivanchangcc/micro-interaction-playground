@@ -10,11 +10,20 @@ export function ConfigPanel({ children }: { children: ReactNode }) {
   );
 }
 
-export function PanelSection({ title, children }: { title: string; children: ReactNode }) {
+export function PanelSection({
+  title,
+  info,
+  children,
+}: {
+  title: string;
+  info?: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <section className="flex flex-col gap-3">
-      <h3 className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-        {title}
+      <h3 className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span>{title}</span>
+        {info}
       </h3>
       {children}
     </section>
