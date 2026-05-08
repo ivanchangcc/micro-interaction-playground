@@ -114,6 +114,7 @@ function CalendarPanel({
         </Button>
       </div>
       <div className="mt-2 grid grid-cols-7 gap-0.5 text-center text-[10px] text-muted-foreground">
+        {/* index key intentional: static list with duplicate values (T, S) */}
         {DOW.map((d, i) => <div key={i}>{d}</div>)}
       </div>
       <div className="mt-1 grid grid-cols-7 gap-0.5">

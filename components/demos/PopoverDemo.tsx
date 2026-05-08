@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { Popover as PopoverPrimitive } from '@base-ui/react/popover';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
-import { usePaneContainer } from '@/components/playground/PaneContext';
+import { usePaneContainer } from '@/lib/pane-context';
 import type { DemoProps } from './index';
 
 export default function PopoverDemo({ config }: DemoProps) {
   const [open, setOpen] = useState(false);
-  const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+  const { isSpring, cssStyle } = useAnimationStyle(config);
   const paneContainer = usePaneContainer();
 
   // Duration/easing for tween mode, expressed as CSS custom props

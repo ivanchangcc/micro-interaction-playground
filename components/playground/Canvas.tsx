@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Play, ArrowLeftRight } from 'lucide-react';
 import { ReactNode, useRef, useState, useEffect } from 'react';
-import { PaneContext } from './PaneContext';
+import { PaneContext } from '@/lib/pane-context';
 
 type Props = {
   paneA: ReactNode;

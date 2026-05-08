@@ -24,6 +24,7 @@ export default function TabsDemo({ config }: DemoProps) {
         {TABS.map((label, i) => (
           <button
             key={label}
+            type="button"
             ref={(el) => { refs.current[i] = el; }}
             onClick={() => setActive(i)}
             className={`px-4 py-2 text-sm ${i === active ? 'font-medium' : 'text-muted-foreground'}`}

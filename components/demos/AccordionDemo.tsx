@@ -23,6 +23,7 @@ export default function AccordionDemo({ config }: DemoProps) {
         return (
           <div key={it.id} className="overflow-hidden rounded border bg-white">
             <button
+              type="button"
               className="flex w-full items-center justify-between px-3 py-2 text-sm font-medium"
               onClick={() => setOpen((cur) => cur.includes(it.id) ? cur.filter((id) => id !== it.id) : [...cur, it.id])}
             >

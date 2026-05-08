@@ -33,14 +33,14 @@ export default function InputFieldDemo({ config }: DemoProps) {
             initial={false}
             animate={floated ? { y: -14, scale: 0.8, color: '#18181b' } : { y: 0, scale: 1, color: '#71717a' }}
             transition={motionTransition}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 origin-top-left text-sm"
+            className="absolute left-3 top-1/2 -translate-y-1/2 origin-top-left text-sm cursor-text"
           >
             Email
           </motion.label>
         ) : (
           <label
             onClick={() => ref.current?.focus()}
-            className="pointer-events-none absolute left-3 top-1/2 origin-top-left text-sm"
+            className="absolute left-3 top-1/2 origin-top-left text-sm cursor-text"
             style={{
               transform: floated ? 'translateY(calc(-50% - 14px)) scale(0.8)' : 'translateY(-50%) scale(1)',
               color: floated ? '#18181b' : '#71717a',
