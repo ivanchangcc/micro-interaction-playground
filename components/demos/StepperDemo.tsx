@@ -23,7 +23,7 @@ export default function StepperDemo({ config }: DemoProps) {
             <div key={label} className="flex flex-1 items-center">
               <div className="flex flex-col items-center gap-1">
                 <div
-                  className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-xs font-medium"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs font-medium"
                   style={{
                     backgroundColor: done || current ? '#18181b' : 'white',
                     borderColor: done || current ? '#18181b' : '#a1a1aa',
