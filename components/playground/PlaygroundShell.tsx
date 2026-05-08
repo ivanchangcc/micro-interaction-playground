@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Info } from 'lucide-react';
 import { TopBar } from './TopBar';
 import { Canvas } from './Canvas';
@@ -14,12 +14,24 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useUrlState } from '@/hooks/useUrlState';
 import { DemoFrame } from '@/components/demos/DemoFrame';
 import { DEMOS } from '@/components/demos';
+import { TRIGGER_SHAPES, getOptionsKey } from '@/components/demos/registry';
+import { DropdownOptionsPanel } from './options/DropdownOptions';
+import { IconButtonOptionsPanel } from './options/IconButtonOptions';
+import { TextButtonOptionsPanel } from './options/TextButtonOptions';
+import { PopoverOptionsPanel } from './options/PopoverOptions';
+import { SliderOptionsPanel } from './options/SliderOptions';
+import { ToastOptionsPanel } from './options/ToastOptions';
+import { SideMenuOptionsPanel } from './options/SideMenuOptions';
 import type { AnimationConfig } from '@/lib/animation/types';
+import type { ComponentOptions } from '@/lib/component-options/types';
+import { DEFAULT_DROPDOWN, DEFAULT_ICON_BUTTON, DEFAULT_TEXT_BUTTON, DEFAULT_POPOVER, DEFAULT_SLIDER, DEFAULT_TOAST, DEFAULT_SIDE_MENU } from '@/lib/component-options/defaults';
+import type { DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import { DEFAULT_TWEEN } from '@/lib/animation/defaults';
 
 export function PlaygroundShell() {
   const { state, setState } = useUrlState();
-  const [triggerKey, setTriggerKey] = useState(0);
+  const refA = useRef<DemoTriggerHandle>(null);
+  const refB = useRef<DemoTriggerHandle>(null);
 
   function setConfigA(next: AnimationConfig) {
     setState((s) => ({ ...s, configA: next }));
@@ -34,13 +46,37 @@ export function PlaygroundShell() {
   const configB = state.configB ?? DEFAULT_TWEEN;
   const Demo = DEMOS[state.componentId];
 
+  const triggerShape = TRIGGER_SHAPES[state.componentId];
+  const footerTrigger = triggerShape === 'single'
+    ? {
+        kind: 'single' as const,
+        label: 'Trigger both',
+        onTrigger: () => {
+          if (refA.current?.kind === 'single') refA.current.trigger();
+          if (refB.current?.kind === 'single') refB.current.trigger();
+        },
+      }
+    : {
+        kind: 'dual' as const,
+        primaryLabel: 'Add chip',
+        secondaryLabel: 'Remove chip',
+        onPrimary: () => {
+          if (refA.current?.kind === 'dual') refA.current.primary();
+          if (refB.current?.kind === 'dual') refB.current.primary();
+        },
+        onSecondary: () => {
+          if (refA.current?.kind === 'dual') refA.current.secondary();
+          if (refB.current?.kind === 'dual') refB.current.secondary();
+        },
+      };
+
   return (
     <>
       <MobileNotice />
       <div className="hidden h-screen flex-col md:flex">
         <TopBar
           componentId={state.componentId}
-          onComponentChange={(id) => setState((s) => ({ ...s, componentId: id }))}
+          onComponentChange={(id) => setState((s) => ({ ...s, componentId: id, componentOptionsA: {}, componentOptionsB: undefined }))}
           sideBySide={state.sideBySide}
           onSideBySideChange={(next) =>
             setState((s) => ({ ...s, sideBySide: next, configB: s.configB ?? DEFAULT_TWEEN }))
@@ -49,9 +85,17 @@ export function PlaygroundShell() {
         <div className="flex flex-1 overflow-hidden">
           <Canvas
             sideBySide={state.sideBySide}
-            paneA={<DemoFrame key={triggerKey}><Demo config={state.configA} triggerKey={triggerKey} /></DemoFrame>}
-            paneB={<DemoFrame key={triggerKey}><Demo config={configB} triggerKey={triggerKey} /></DemoFrame>}
-            onReplay={() => setTriggerKey((k) => k + 1)}
+            paneA={
+              <DemoFrame componentId={state.componentId}>
+                <Demo ref={refA} config={state.configA} options={state.componentOptionsA} />
+              </DemoFrame>
+            }
+            paneB={
+              <DemoFrame componentId={state.componentId}>
+                <Demo ref={refB} config={configB} options={state.componentOptionsB ?? {}} />
+              </DemoFrame>
+            }
+            footerTrigger={state.sideBySide ? footerTrigger : undefined}
             onSwap={swapConfigs}
           />
           <ConfigPanel>
@@ -66,6 +110,8 @@ export function PlaygroundShell() {
                     componentId={state.componentId}
                     config={state.configA}
                     onChange={setConfigA}
+                    options={state.componentOptionsA}
+                    onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsA: next }))}
                   />
                 </TabsContent>
                 <TabsContent value="b" className="mt-4">
@@ -73,6 +119,8 @@ export function PlaygroundShell() {
                     componentId={state.componentId}
                     config={configB}
                     onChange={setConfigB}
+                    options={state.componentOptionsB ?? {}}
+                    onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsB: next }))}
                   />
                 </TabsContent>
               </Tabs>
@@ -81,6 +129,8 @@ export function PlaygroundShell() {
                 componentId={state.componentId}
                 config={state.configA}
                 onChange={setConfigA}
+                options={state.componentOptionsA}
+                onOptionsChange={(next) => setState((s) => ({ ...s, componentOptionsA: next }))}
               />
             )}
           </ConfigPanel>
@@ -94,11 +144,78 @@ function PanelTabContents({
   componentId,
   config,
   onChange,
+  options,
+  onOptionsChange,
 }: {
   componentId: import('@/components/demos/registry').ComponentId;
   config: AnimationConfig;
   onChange: (next: AnimationConfig) => void;
+  options: Partial<ComponentOptions>;
+  onOptionsChange: (next: Partial<ComponentOptions>) => void;
 }) {
+  const optionsKey = getOptionsKey(componentId);
+  const optionsPanel = (() => {
+    if (optionsKey === 'dropdown') {
+      return (
+        <DropdownOptionsPanel
+          value={options.dropdown ?? DEFAULT_DROPDOWN}
+          onChange={(next) => onOptionsChange({ ...options, dropdown: next })}
+          config={config}
+        />
+      );
+    }
+    if (optionsKey === 'iconButton') {
+      return (
+        <IconButtonOptionsPanel
+          value={options.iconButton ?? DEFAULT_ICON_BUTTON}
+          onChange={(next) => onOptionsChange({ ...options, iconButton: next })}
+        />
+      );
+    }
+    if (optionsKey === 'textButton') {
+      return (
+        <TextButtonOptionsPanel
+          value={options.textButton ?? DEFAULT_TEXT_BUTTON}
+          onChange={(next) => onOptionsChange({ ...options, textButton: next })}
+        />
+      );
+    }
+    if (optionsKey === 'popover') {
+      return (
+        <PopoverOptionsPanel
+          value={options.popover ?? DEFAULT_POPOVER}
+          onChange={(next) => onOptionsChange({ ...options, popover: next })}
+        />
+      );
+    }
+    if (optionsKey === 'slider') {
+      return (
+        <SliderOptionsPanel
+          value={options.slider ?? DEFAULT_SLIDER}
+          onChange={(next) => onOptionsChange({ ...options, slider: next })}
+        />
+      );
+    }
+    if (optionsKey === 'toast') {
+      return (
+        <ToastOptionsPanel
+          value={options.toast ?? DEFAULT_TOAST}
+          onChange={(next) => onOptionsChange({ ...options, toast: next })}
+        />
+      );
+    }
+    if (optionsKey === 'sideMenu') {
+      return (
+        <SideMenuOptionsPanel
+          value={options.sideMenu ?? DEFAULT_SIDE_MENU}
+          onChange={(next) => onOptionsChange({ ...options, sideMenu: next })}
+          config={config}
+        />
+      );
+    }
+    return null;
+  })();
+
   return (
     <div className="flex flex-col gap-6">
       <PanelSection title="Preset">
@@ -128,6 +245,9 @@ function PanelTabContents({
       >
         <AnimationControls config={config} onChange={onChange} />
       </PanelSection>
+      {optionsPanel && (
+        <PanelSection title="Component options">{optionsPanel}</PanelSection>
+      )}
       <PanelSection title="Code">
         <CodeSnippet config={config} />
       </PanelSection>

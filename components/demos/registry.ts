@@ -49,3 +49,65 @@ export function getComponentLabel(id: ComponentId | string): string {
 }
 
 export const DEFAULT_COMPONENT_ID: ComponentId = 'toggle';
+
+import type { ComponentOptionsKey } from '@/lib/component-options/types';
+
+export const OPTIONS_KEYS: Partial<Record<ComponentId, ComponentOptionsKey>> = {
+  'popover': 'popover',
+  'toast': 'toast',
+  'side-menu': 'sideMenu',
+  'dropdown': 'dropdown',
+  'icon-button': 'iconButton',
+  'text-button': 'textButton',
+  'slider': 'slider',
+};
+
+export function getOptionsKey(id: ComponentId): ComponentOptionsKey | undefined {
+  return OPTIONS_KEYS[id];
+}
+
+export type LogicalSize = { width: number; height: number };
+
+export const LOGICAL_SIZES: Record<ComponentId, LogicalSize> = {
+  'icon-button':  { width: 200, height: 200 },
+  'text-button':  { width: 240, height: 80 },
+  'toggle':       { width: 200, height: 80 },
+  'checkbox':     { width: 200, height: 80 },
+  'accordion':    { width: 360, height: 320 },
+  'tabs':         { width: 360, height: 200 },
+  'stepper':      { width: 480, height: 160 },
+  'slider':       { width: 360, height: 120 },
+  'input-field':  { width: 320, height: 120 },
+  'search-input': { width: 320, height: 280 },
+  'dropdown':     { width: 240, height: 360 },
+  'popover':      { width: 320, height: 280 },
+  'modal':        { width: 480, height: 360 },
+  'date-picker':  { width: 320, height: 380 },
+  'toast':        { width: 390, height: 880 },
+  'side-menu':    { width: 360, height: 480 },
+  'chips':        { width: 360, height: 160 },
+};
+
+export function getLogicalSize(id: ComponentId): LogicalSize {
+  return LOGICAL_SIZES[id];
+}
+
+export const TRIGGER_SHAPES: Record<ComponentId, 'single' | 'dual'> = {
+  'chips':        'dual',
+  'icon-button':  'single',
+  'text-button':  'single',
+  'toggle':       'single',
+  'checkbox':     'single',
+  'accordion':    'single',
+  'tabs':         'single',
+  'stepper':      'single',
+  'slider':       'single',
+  'input-field':  'single',
+  'search-input': 'single',
+  'dropdown':     'single',
+  'popover':      'single',
+  'modal':        'single',
+  'date-picker':  'single',
+  'toast':        'single',
+  'side-menu':    'single',
+};

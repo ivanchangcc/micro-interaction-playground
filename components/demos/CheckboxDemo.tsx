@@ -1,16 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
-export default function CheckboxDemo({ config }: DemoProps) {
+const CheckboxDemo = forwardRef<DemoTriggerHandle, DemoProps>(function CheckboxDemo({ config }, ref) {
   const [checked, setChecked] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
+  useDemoTrigger(ref, () => ({
+    kind: 'single',
+    trigger: () => setChecked((v) => !v),
+  }), []);
+
   return (
+    <div className="flex h-full w-full items-center justify-center">
     <button
       type="button"
       role="checkbox"
@@ -46,5 +53,8 @@ export default function CheckboxDemo({ config }: DemoProps) {
         </span>
       )}
     </button>
+    </div>
   );
-}
+});
+
+export default CheckboxDemo;

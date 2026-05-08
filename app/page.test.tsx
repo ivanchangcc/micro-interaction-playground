@@ -48,13 +48,13 @@ describe('demos smoke test', () => {
   for (const id of COMPONENT_IDS) {
     it(`${id} renders with tween config`, async () => {
       const Demo = DEMO_MAP[id];
-      const { container } = render(<Demo config={DEFAULT_TWEEN} triggerKey={0} />);
+      const { container } = render(<Demo config={DEFAULT_TWEEN} options={{}} />);
       await waitFor(() => expect(container.firstChild).toBeTruthy());
     });
 
     it(`${id} renders with spring config`, async () => {
       const Demo = DEMO_MAP[id];
-      const { container } = render(<Demo config={DEFAULT_SPRING} triggerKey={0} />);
+      const { container } = render(<Demo config={DEFAULT_SPRING} options={{}} />);
       await waitFor(() => expect(container.firstChild).toBeTruthy());
     });
   }

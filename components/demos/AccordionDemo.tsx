@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const ITEMS = [
@@ -12,17 +13,24 @@ const ITEMS = [
   { id: '3', title: 'When do they go wrong?', body: 'When they are too long, too linear, or block input.' },
 ];
 
-export default function AccordionDemo({ config }: DemoProps) {
+const AccordionDemo = forwardRef<DemoTriggerHandle, DemoProps>(function AccordionDemo({ config }, ref) {
   const [open, setOpen] = useState<string[]>(['1']);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
 
+  useDemoTrigger(ref, () => ({
+    kind: 'single',
+    trigger: () => setOpen((v) => v.length ? [] : ['1']),
+  }), []);
+
   return (
-    <div className="w-full max-w-md space-y-1">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="w-full space-y-1">
       {ITEMS.map((it) => {
         const isOpen = open.includes(it.id);
         return (
           <div key={it.id} className="overflow-hidden rounded border bg-white">
             <button
+              type="button"
               className="flex w-full items-center justify-between px-3 py-2 text-sm font-medium"
               onClick={() => setOpen((cur) => cur.includes(it.id) ? cur.filter((id) => id !== it.id) : [...cur, it.id])}
             >
@@ -65,6 +73,9 @@ export default function AccordionDemo({ config }: DemoProps) {
           </div>
         );
       })}
+      </div>
     </div>
   );
-}
+});
+
+export default AccordionDemo;

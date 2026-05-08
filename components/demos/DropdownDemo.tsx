@@ -1,20 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const ITEMS = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Honeydew'];
 
-export default function DropdownDemo({ config }: DemoProps) {
+const DropdownDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DropdownDemo({ config, options }, ref) {
   const [open, setOpen] = useState(false);
   const { isSpring, motionTransition, cssStyle } = useAnimationStyle(config);
+  const bounce = options.dropdown?.bounce && config.type === 'spring';
+  const transition = bounce
+    ? { ...motionTransition, damping: ((motionTransition as { damping?: number }).damping ?? 20) * 0.6 }
+    : motionTransition;
+
+  useDemoTrigger(ref, () => ({
+    kind: 'single',
+    trigger: () => setOpen((v) => !v),
+  }), []);
 
   return (
-    <div className="relative">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="relative">
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-2 rounded border bg-white px-3 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
@@ -27,7 +39,7 @@ export default function DropdownDemo({ config }: DemoProps) {
               initial={{ opacity: 0, y: -4, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -4, scale: 0.96 }}
-              transition={motionTransition}
+              transition={transition}
               className="absolute left-0 top-full mt-1 w-40 origin-top rounded border bg-white shadow max-h-[280px] overflow-y-auto"
             >
               {ITEMS.map((it) => (
@@ -52,6 +64,9 @@ export default function DropdownDemo({ config }: DemoProps) {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
-}
+});
+
+export default DropdownDemo;

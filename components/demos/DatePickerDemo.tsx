@@ -1,16 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAnimationStyle } from '@/hooks/useAnimationStyle';
+import { useDemoTrigger, type DemoTriggerHandle } from '@/hooks/useDemoTrigger';
 import type { DemoProps } from './index';
 
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const DOW = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-export default function DatePickerDemo({ config }: DemoProps) {
+const DatePickerDemo = forwardRef<DemoTriggerHandle, DemoProps>(function DatePickerDemo({ config }, ref) {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState({ month: 4, year: 2026 }); // May 2026
   const [selected, setSelected] = useState<{ day: number; month: number; year: number } | null>(null);
@@ -34,12 +35,18 @@ export default function DatePickerDemo({ config }: DemoProps) {
     });
   }
 
+  useDemoTrigger(ref, () => ({
+    kind: 'single',
+    trigger: () => setOpen((v) => !v),
+  }), []);
+
   const triggerLabel = selected
     ? `${MONTH_NAMES[selected.month]} ${selected.day}, ${selected.year}`
     : 'Pick a date';
 
   return (
-    <div className="relative">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="relative">
       <Button variant="outline" onClick={() => setOpen((v) => !v)}>
         <Calendar className="mr-2 h-4 w-4" />
         {triggerLabel}
@@ -88,9 +95,12 @@ export default function DatePickerDemo({ config }: DemoProps) {
           />
         </div>
       )}
+      </div>
     </div>
   );
-}
+});
+
+export default DatePickerDemo;
 
 function CalendarPanel({
   view, cells, selected, onPrev, onNext, onPick,
@@ -114,6 +124,7 @@ function CalendarPanel({
         </Button>
       </div>
       <div className="mt-2 grid grid-cols-7 gap-0.5 text-center text-[10px] text-muted-foreground">
+        {/* index key intentional: static list with duplicate values (T, S) */}
         {DOW.map((d, i) => <div key={i}>{d}</div>)}
       </div>
       <div className="mt-1 grid grid-cols-7 gap-0.5">

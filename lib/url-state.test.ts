@@ -5,6 +5,7 @@ import { DEFAULT_TWEEN, DEFAULT_SPRING } from './animation/defaults';
 const baseTweenState: PlaygroundState = {
   componentId: 'modal',
   configA: DEFAULT_TWEEN,
+  componentOptionsA: {},
   sideBySide: false,
 };
 
@@ -71,6 +72,7 @@ describe('parseState', () => {
     const original: PlaygroundState = {
       componentId: 'modal',
       configA: { type: 'tween', duration: 300, easing: 'ease-out' },
+      componentOptionsA: {},
       sideBySide: false,
     };
     const parsed = parseState(serializeState(original));
@@ -85,6 +87,7 @@ describe('parseState', () => {
         duration: 400,
         easing: { cubicBezier: [0.4, 0, 0.2, 1] },
       },
+      componentOptionsA: {},
       sideBySide: false,
     };
     const parsed = parseState(serializeState(original));
@@ -95,6 +98,7 @@ describe('parseState', () => {
     const original: PlaygroundState = {
       componentId: 'toggle',
       configA: DEFAULT_SPRING,
+      componentOptionsA: {},
       sideBySide: false,
     };
     const parsed = parseState(serializeState(original));
@@ -106,6 +110,8 @@ describe('parseState', () => {
       componentId: 'modal',
       configA: DEFAULT_TWEEN,
       configB: DEFAULT_SPRING,
+      componentOptionsA: {},
+      componentOptionsB: undefined,
       sideBySide: true,
     };
     const parsed = parseState(serializeState(original));
@@ -136,5 +142,38 @@ describe('parseState', () => {
     expect(cfg.stiffness).toBeLessThanOrEqual(500);
     expect(cfg.damping).toBeLessThanOrEqual(50);
     expect(cfg.mass).toBeLessThanOrEqual(10);
+  });
+
+  it('round-trips component options when component has options support', () => {
+    const state: PlaygroundState = {
+      componentId: 'popover',
+      configA: DEFAULT_TWEEN,
+      componentOptionsA: { popover: { position: 'top-right' } },
+      sideBySide: false,
+    };
+    const params = serializeState(state);
+    expect(params.get('popover.pos')).toBe('tr');
+    const parsed = parseState(params);
+    expect(parsed.componentOptionsA.popover?.position).toBe('top-right');
+  });
+
+  it('round-trips per-pane options when side-by-side', () => {
+    const state: PlaygroundState = {
+      componentId: 'popover',
+      configA: DEFAULT_TWEEN,
+      configB: DEFAULT_TWEEN,
+      componentOptionsA: { popover: { position: 'top-right' } },
+      componentOptionsB: { popover: { position: 'bottom-left' } },
+      sideBySide: true,
+    };
+    const params = serializeState(state);
+    expect(params.get('popover.pos')).toBe('tr');
+    expect(params.get('b.popover.pos')).toBe('bl');
+  });
+
+  it('parses v1 URL (no component options) without error', () => {
+    const params = new URLSearchParams('c=popover&t=tween&dur=250');
+    const parsed = parseState(params);
+    expect(parsed.componentOptionsA).toEqual({});
   });
 });
