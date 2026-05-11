@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-11T00:00:00.000Z",
+  "title": "Design System: Micro-Interaction Playground",
+  "extensions": {
+    "colorMeta": {
+      "surface-paper": {
+        "role": "neutral",
+        "displayName": "Surface Paper",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": [
+          "oklch(0.145 0 0)",
+          "oklch(0.205 0 0)",
+          "oklch(0.269 0 0)",
+          "oklch(0.371 0 0)",
+          "oklch(0.556 0 0)",
+          "oklch(0.708 0 0)",
+          "oklch(0.87 0 0)",
+          "oklch(0.985 0 0)"
+        ]
+      },
+      "surface-canvas": {
+        "role": "neutral",
+        "displayName": "Surface Canvas",
+        "canonical": "oklch(0.97 0 0)",
+        "tonalRamp": [
+          "oklch(0.145 0 0)",
+          "oklch(0.205 0 0)",
+          "oklch(0.371 0 0)",
+          "oklch(0.556 0 0)",
+          "oklch(0.708 0 0)",
+          "oklch(0.87 0 0)",
+          "oklch(0.922 0 0)",
+          "oklch(0.97 0 0)"
+        ]
+      },
+      "surface-sidebar": {
+        "role": "neutral",
+        "displayName": "Surface Sidebar",
+        "canonical": "oklch(0.985 0 0)",
+        "tonalRamp": [
+          "oklch(0.205 0 0)",
+          "oklch(0.371 0 0)",
+          "oklch(0.556 0 0)",
+          "oklch(0.708 0 0)",
+          "oklch(0.87 0 0)",
+          "oklch(0.922 0 0)",
+          "oklch(0.97 0 0)",
+          "oklch(0.985 0 0)"
+        ]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Surface Muted",
+        "canonical": "oklch(0.97 0 0)"
+      },
+      "ink-primary": {
+        "role": "primary",
+        "displayName": "Ink Primary",
+        "canonical": "oklch(0.205 0 0)",
+        "tonalRamp": [
+          "oklch(0.145 0 0)",
+          "oklch(0.205 0 0)",
+          "oklch(0.269 0 0)",
+          "oklch(0.371 0 0)",
+          "oklch(0.439 0 0)",
+          "oklch(0.556 0 0)",
+          "oklch(0.708 0 0)",
+          "oklch(0.87 0 0)"
+        ]
+      },
+      "ink-on-primary": {
+        "role": "primary",
+        "displayName": "Ink On Primary",
+        "canonical": "oklch(0.985 0 0)"
+      },
+      "ink-foreground": {
+        "role": "neutral",
+        "displayName": "Ink Foreground",
+        "canonical": "oklch(0.145 0 0)"
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "oklch(0.556 0 0)"
+      },
+      "border-default": {
+        "role": "neutral",
+        "displayName": "Border Default",
+        "canonical": "oklch(0.922 0 0)"
+      },
+      "border-input": {
+        "role": "neutral",
+        "displayName": "Border Input",
+        "canonical": "oklch(0.922 0 0)"
+      },
+      "ring-focus": {
+        "role": "neutral",
+        "displayName": "Ring Focus",
+        "canonical": "oklch(0.708 0 0)"
+      },
+      "signal-destructive": {
+        "role": "signal",
+        "displayName": "Signal Destructive",
+        "canonical": "oklch(0.577 0.245 27.325)",
+        "tonalRamp": [
+          "oklch(0.35 0.18 27.3)",
+          "oklch(0.42 0.21 27.3)",
+          "oklch(0.5 0.24 27.3)",
+          "oklch(0.577 0.245 27.325)",
+          "oklch(0.66 0.22 27.3)",
+          "oklch(0.75 0.18 27.3)",
+          "oklch(0.85 0.12 27.3)",
+          "oklch(0.95 0.05 27.3)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Top-bar product title and reserved hero text. Used sparingly." },
+      "headline": { "displayName": "Headline", "purpose": "Modal titles, code-snippet tab headings." },
+      "title": { "displayName": "Title", "purpose": "Default emphasis weight: button labels, tab labels, dropdown anchors." },
+      "body": { "displayName": "Body", "purpose": "Default text size: inputs, dropdown items, panel descriptions." },
+      "label": { "displayName": "Label", "purpose": "Panel section headers, pane labels (A/B). Quiet orientation copy." },
+      "mono": { "displayName": "Mono", "purpose": "Code snippets and any numeric value the user can edit (the Honest Number Rule)." }
+    },
+    "shadows": [
+      {
+        "name": "overlay-soft",
+        "value": "0 4px 16px oklch(0 0 0 / 0.08)",
+        "purpose": "Diffuse low-contrast shadow for popovers and dropdowns. The floating surface barely casts a shadow because it is barely above the page."
+      },
+      {
+        "name": "overlay-anchored",
+        "value": "0 12px 32px oklch(0 0 0 / 0.12)",
+        "purpose": "Stronger but still soft shadow for modals and toasts. The dialog is meaningfully separated from the canvas; the shadow says so."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default tween easing for chrome transitions (panel switches, hover background, focus ring fade-in)."
+      },
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Hover, focus, and press feedback. The 'I felt that' band."
+      },
+      {
+        "name": "duration-base",
+        "value": "200ms",
+        "purpose": "Default chrome transition (toggle thumb, tab indicator, code-snippet copy state)."
+      },
+      {
+        "name": "press-translate",
+        "value": "translateY(1px)",
+        "purpose": "Universal press feedback on every button. Exactly 1px, no more."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile-block", "value": "767px" },
+      { "name": "desktop", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Canonical action of a pane or panel: Trigger both, Add chip, Copy code.",
+      "html": "<button class=\"ds-btn-primary\">Trigger both</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 10px; gap: 6px; background: oklch(0.205 0 0); color: oklch(0.985 0 0); font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1; letter-spacing: normal; border: 1px solid transparent; border-radius: 10px; outline: none; cursor: pointer; transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 100ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: color-mix(in oklab, oklch(0.205 0 0) 80%, transparent); } .ds-btn-primary:focus-visible { border-color: oklch(0.708 0 0); box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary actions: Swap, secondary trigger, dropdown anchors.",
+      "html": "<button class=\"ds-btn-outline\">Swap</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 10px; gap: 6px; background: oklch(1 0 0); color: oklch(0.145 0 0); font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1; border: 1px solid oklch(0.922 0 0); border-radius: 10px; outline: none; cursor: pointer; transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 100ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-outline:hover { background: oklch(0.97 0 0); color: oklch(0.145 0 0); } .ds-btn-outline:focus-visible { border-color: oklch(0.708 0 0); box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-btn-outline:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Tertiary actions and icon-only controls that disappear at rest.",
+      "html": "<button class=\"ds-btn-ghost\" aria-label=\"More\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"1\"></circle><circle cx=\"19\" cy=\"12\" r=\"1\"></circle><circle cx=\"5\" cy=\"12\" r=\"1\"></circle></svg></button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 10px; gap: 6px; background: transparent; color: oklch(0.145 0 0); font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 500; line-height: 1; border: 1px solid transparent; border-radius: 10px; outline: none; cursor: pointer; transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 100ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-ghost:hover { background: oklch(0.97 0 0); color: oklch(0.145 0 0); } .ds-btn-ghost:focus-visible { border-color: oklch(0.708 0 0); box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-btn-ghost:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Standard text input. Hairline border at rest, ring on focus, no glow.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Search a component.\" />",
+      "css": ".ds-input { display: block; width: 100%; min-width: 0; height: 32px; padding: 4px 10px; background: transparent; color: oklch(0.145 0 0); font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.5; border: 1px solid oklch(0.922 0 0); border-radius: 10px; outline: none; transition: border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-input::placeholder { color: oklch(0.556 0 0); } .ds-input:focus-visible { border-color: oklch(0.708 0 0); box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-input:disabled { background: oklch(0.97 0 0 / 0.5); cursor: not-allowed; opacity: 0.5; }"
+    },
+    {
+      "name": "Slider",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Single-value slider. 4px track, 12px thumb, Honest Number Rule displays the value in mono beside it.",
+      "html": "<div class=\"ds-slider-group\"><div class=\"ds-slider\"><div class=\"ds-slider-track\"><div class=\"ds-slider-fill\" style=\"width: 50%;\"></div></div><div class=\"ds-slider-thumb\" style=\"left: 50%;\"></div></div><div class=\"ds-slider-value\">250ms</div></div>",
+      "css": ".ds-slider-group { display: flex; align-items: center; gap: 12px; width: 100%; } .ds-slider { position: relative; flex: 1; height: 16px; display: flex; align-items: center; cursor: pointer; } .ds-slider-track { position: relative; width: 100%; height: 4px; background: oklch(0.97 0 0); border-radius: 9999px; overflow: hidden; } .ds-slider-fill { height: 100%; background: oklch(0.205 0 0); border-radius: 9999px; } .ds-slider-thumb { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; background: oklch(1 0 0); border: 1px solid oklch(0.708 0 0); border-radius: 50%; cursor: grab; transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-slider-thumb:hover, .ds-slider-thumb:focus-visible { box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); outline: none; } .ds-slider-thumb:active { cursor: grabbing; box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-slider-value { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; line-height: 1; color: oklch(0.556 0 0); min-width: 48px; text-align: right; }"
+    },
+    {
+      "name": "Toggle",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Binary on/off control. 56x24 track, 24px thumb sliding 28px, symmetric 4px leading gap in both states.",
+      "html": "<button class=\"ds-toggle\" role=\"switch\" aria-checked=\"true\"><span class=\"ds-toggle-thumb\"></span></button>",
+      "css": ".ds-toggle { position: relative; width: 56px; height: 24px; background: oklch(0.97 0 0); border: none; border-radius: 9999px; cursor: pointer; outline: none; padding: 0; transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-toggle[aria-checked=\"true\"] { background: oklch(0.205 0 0); } .ds-toggle:focus-visible { box-shadow: 0 0 0 3px oklch(0.708 0 0 / 0.5); } .ds-toggle-thumb { position: absolute; top: 50%; left: 4px; width: 24px; height: 24px; transform: translate(0, -50%); background: oklch(1 0 0); border-radius: 50%; box-shadow: 0 1px 2px oklch(0 0 0 / 0.1); transition: left 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-toggle[aria-checked=\"true\"] .ds-toggle-thumb { left: 28px; }"
+    },
+    {
+      "name": "Panel Section Header",
+      "kind": "custom",
+      "refersTo": "panel-section-header",
+      "description": "Quiet orientation label above a control group. Label scale, never Title weight.",
+      "html": "<h3 class=\"ds-panel-section-header\">Animation</h3>",
+      "css": ".ds-panel-section-header { font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 10px; font-weight: 600; line-height: 1; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.556 0 0); margin: 0; }"
+    },
+    {
+      "name": "Code Snippet",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Read-only code block with a copy button. Geist Mono on Surface Muted.",
+      "html": "<div class=\"ds-code\"><pre class=\"ds-code-pre\"><code>transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);</code></pre><button class=\"ds-code-copy\" aria-label=\"Copy\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"></rect><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"></path></svg></button></div>",
+      "css": ".ds-code { position: relative; } .ds-code-pre { overflow-x: auto; margin: 0; padding: 8px; background: color-mix(in oklab, oklch(0.97 0 0) 60%, transparent); border: 1px solid oklch(0.922 0 0); border-radius: 6px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; line-height: 1.4; color: oklch(0.145 0 0); } .ds-code-copy { position: absolute; right: 4px; top: 4px; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; background: oklch(0.97 0 0); color: oklch(0.205 0 0); border: none; border-radius: 6px; cursor: pointer; transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-code-copy:hover { background: color-mix(in oklab, oklch(0.97 0 0) 80%, transparent); }"
+    },
+    {
+      "name": "Pane",
+      "kind": "card",
+      "refersTo": "canvas-pane",
+      "description": "Stage on which a demo renders. Surface Canvas, generous padding, quiet label in the corner.",
+      "html": "<div class=\"ds-pane\"><div class=\"ds-pane-label\">A</div><div class=\"ds-pane-content\">Demo renders here</div></div>",
+      "css": ".ds-pane { position: relative; display: flex; flex: 1; align-items: center; justify-content: center; background: oklch(0.97 0 0); padding: 32px; min-height: 320px; min-width: 320px; } .ds-pane-label { position: absolute; top: 12px; left: 12px; font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.556 0 0); } .ds-pane-content { font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; font-size: 14px; color: oklch(0.556 0 0); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Workbench",
+    "overview": "The playground is a workbench. The bench surface is neutral, almost colorless, lit evenly. The tools (sliders, dropdowns, toggles) line the rim, labeled in small caps so they read without competing. The work, the actual component being tuned, sits in the middle of the bench. The only thing that moves on this bench is the work itself.\n\nThis is not a SaaS product, not a design-system docs site, and not a CodePen-style demo. It rejects gradient heroes, big-number metric cards, encyclopedic nav trees, and novelty color. The voice is plain and direct. The chrome is type-driven, with hairline borders, generous whitespace, and OKLCH-pure neutrals that recede until the user looks at them. Numbers, durations in milliseconds, spring stiffness, cubic bezier handles, are visible at all times in monospace where the value lives.\n\nThe system practices what it preaches. Every transition in the chrome (button press, panel switch, focus ring, toggle, share-button confirmation) is itself a piece of restrained motion. A designer using the playground should feel that the tool was built by someone who cares about the same details they care about.",
+    "keyCharacteristics": [
+      "Monochromatic by intent. One destructive accent for warnings, otherwise pure neutrals.",
+      "Type-driven hierarchy. Geist Sans for everything; Geist Mono for numeric truth.",
+      "Flat by default. Borders carry the boundary; shadows appear only on overlays.",
+      "Direct manipulation. Inline sliders and toggles beat tabs and overlays.",
+      "Quiet chrome, loud canvas. The pane backgrounds are slightly muted so the canvas reads as a stage, not as a competing surface."
+    ],
+    "rules": [
+      { "name": "The No-Hue Rule", "body": "All non-signal colors are OKLCH chroma 0. Greys are not warmed, not cooled, not tinted toward any brand color. The motion in the canvas carries the visual interest; the surface should not compete.", "section": "colors" },
+      { "name": "The Signal Reservation Rule", "body": "Signal Destructive is the only chromatic color in the entire chrome. It must not be used decoratively, for emphasis, or as an A/B identity color. If a new state needs distinguishing, find a non-color signal (position, weight, label, monospace) first.", "section": "colors" },
+      { "name": "The Honest Number Rule", "body": "Any value that a user can change, duration, easing handle, stiffness, mass, position, must appear somewhere visible in Geist Mono. The slider shows the feel; the monospace number shows the truth. Don't hide the number behind a friendly label.", "section": "typography" },
+      { "name": "The Quiet Label Rule", "body": "Section headers use the Label scale, not Title. They orient; they don't announce. If a header is shouting, switch it to Label and add breathing room above it instead.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Cards, panels, top bars, and pane backgrounds are flat. They have a border or a subtle background change, never a shadow. If a component needs a shadow to read, redesign the boundary instead.", "section": "elevation" },
+      { "name": "The Earned Shadow Rule", "body": "A shadow appears only on a surface that is physically detached from the page (popover, dropdown, modal, toast). It must be diffuse and low-contrast, soft glow, not hard drop. Hard, dark, or stacked shadows are prohibited.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep all non-signal colors at OKLCH chroma 0. Greys are pure greys. (The No-Hue Rule.)",
+      "Do show every adjustable value as a number in Geist Mono somewhere visible. (The Honest Number Rule.)",
+      "Do use Label scale (text-[10px] font-semibold uppercase tracking-wider text-muted-foreground) for section headers, pane labels, and any orientation copy. Title weight is for actual UI elements.",
+      "Do rely on hairline borders (oklch(0.922 0 0)) for boundaries. Borders carry the structure of the interface.",
+      "Do keep the press feedback at exactly 1px translateY on active state. Every button. Consistency is the signature.",
+      "Do use focus-visible: (not focus:) so the focus ring appears for keyboard users only. Universal across every interactive element.",
+      "Do put the canvas on Surface Canvas (oklch(0.97 0 0)) and the chrome on Surface Paper (oklch(1 0 0)). The 3% lightness step is the stage cue.",
+      "Do respect prefers-reduced-motion for chrome (panel transitions, button feedback, toggle animations). Demos inside the canvas keep animating, because that's the product.",
+      "Do carry A/B pane identity through position and label, never through color alone. (Color is never the only signal.)"
+    ],
+    "donts": [
+      "Don't introduce a brand accent color. The system is monochromatic by intent. If a primary identity is needed, it lives in motion and type, not hue. (The No-Hue Rule.)",
+      "Don't use Signal Destructive (oklch(0.577 0.245 27.325)) for anything other than destructive/error/warning states. No decorative red, no important red, no active-state red. (The Signal Reservation Rule.)",
+      "Don't ship a gradient hero, a big-number metric card, or a blue-accent dashboard template. The playground is not a SaaS product. (From PRODUCT.md anti-references.)",
+      "Don't build encyclopedic chrome, deep nav trees, long token-table sidebars, multi-level docs navigation. The playground is direct, not a design-system docs site. (From PRODUCT.md anti-references.)",
+      "Don't introduce playful illustrations, novelty fonts, or fun demo coloring. This is an instrument. (From PRODUCT.md anti-references.)",
+      "Don't apply shadows to flat surfaces (cards, panels, top bars, panes). Shadows appear only on overlays. (The Flat-By-Default Rule, The Earned Shadow Rule.)",
+      "Don't use hard, dark, or stacked drop shadows. Overlays use diffuse low-contrast shadows only.",
+      "Don't use border-left or border-right greater than 1px as a colored stripe on alerts, callouts, or list items. (Universal: side-stripe borders are an absolute ban.)",
+      "Don't use background-clip: text with a gradient. Solid colors only. Emphasis is via weight or size. (Universal: gradient text is an absolute ban.)",
+      "Don't wrap chrome in glassmorphic blur as a default. Rare and purposeful or nothing.",
+      "Don't hide important values behind a friendly label. If the user can change it, the number must be visible. (The Honest Number Rule.)",
+      "Don't rename or reposition panel section headers to make them louder. If a header needs more emphasis, add space above it; don't upscale the type.",
+      "Don't put a focus ring on :focus (mouse). Only on :focus-visible (keyboard).",
+      "Don't use em dashes in any UI copy or documentation. Use commas, colons, semicolons, periods, or parentheses. (Universal copy rule.)"
+    ]
+  }
+}
